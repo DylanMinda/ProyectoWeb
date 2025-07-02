@@ -1,0 +1,12 @@
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\bin\Debug\net8.0\Spotify.Modelos.deps.json
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\bin\Debug\net8.0\Spotify.Modelos.dll
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\bin\Debug\net8.0\Spotify.Modelos.pdb
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\obj\Debug\net8.0\Spotify.Modelos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\obj\Debug\net8.0\Spotify.Modelos.AssemblyInfoInputs.cache
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\obj\Debug\net8.0\Spotify.Modelos.AssemblyInfo.cs
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\obj\Debug\net8.0\Spotify.Modelos.csproj.CoreCompileInputs.cache
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\obj\Debug\net8.0\Spotify.Modelos.sourcelink.json
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\obj\Debug\net8.0\Spotify.Modelos.dll
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\obj\Debug\net8.0\refint\Spotify.Modelos.dll
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\obj\Debug\net8.0\Spotify.Modelos.pdb
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.Modelos\obj\Debug\net8.0\ref\Spotify.Modelos.dll

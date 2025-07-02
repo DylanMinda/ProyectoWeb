@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ki13mNAy8Zw=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.APIConsumer\\Spotify.APIConsumer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Dylan\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

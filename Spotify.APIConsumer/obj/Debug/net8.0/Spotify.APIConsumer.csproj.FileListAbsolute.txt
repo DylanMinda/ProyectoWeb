@@ -1,0 +1,13 @@
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\bin\Debug\net8.0\Spotify.APIConsumer.deps.json
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\bin\Debug\net8.0\Spotify.APIConsumer.dll
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\bin\Debug\net8.0\Spotify.APIConsumer.pdb
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\obj\Debug\net8.0\Spotify.APIConsumer.csproj.AssemblyReference.cache
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\obj\Debug\net8.0\Spotify.APIConsumer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\obj\Debug\net8.0\Spotify.APIConsumer.AssemblyInfoInputs.cache
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\obj\Debug\net8.0\Spotify.APIConsumer.AssemblyInfo.cs
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\obj\Debug\net8.0\Spotify.APIConsumer.csproj.CoreCompileInputs.cache
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\obj\Debug\net8.0\Spotify.APIConsumer.sourcelink.json
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\obj\Debug\net8.0\Spotify.APIConsumer.dll
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\obj\Debug\net8.0\refint\Spotify.APIConsumer.dll
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\obj\Debug\net8.0\Spotify.APIConsumer.pdb
+C:\Users\Dylan\OneDrive\Documentos\Tercer Semestre\Herramientas\Spotify\Spotify.Modelos\Spotify.APIConsumer\obj\Debug\net8.0\ref\Spotify.APIConsumer.dll
