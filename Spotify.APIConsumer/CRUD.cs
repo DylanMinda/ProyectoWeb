@@ -3,9 +3,7 @@ using System.Text;
 
 namespace Spotify.APIConsumer
 {
-    public class CRUD
-    {
-        public static class Crud<T>
+        public static class CRUD<T>
         {
             public static string EndPoint { get; set; }
 
@@ -108,6 +106,4 @@ namespace Spotify.APIConsumer
                 }
             }
         }
-
-    }
 }

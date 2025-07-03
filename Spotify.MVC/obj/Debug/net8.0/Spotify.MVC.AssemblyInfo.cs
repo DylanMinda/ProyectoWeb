@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Spotify.MVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9fc36dd195e729bb111f16d8955561142be09cea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+721464a1391217a11272316c019ecdcdbfc3cff3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Spotify.MVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Spotify.MVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -28,7 +28,7 @@ namespace Spotify.API.Controllers
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuario()
         {
             var usuarios = await _context.Usuarios
-                .Include(u => u.Plan) // Incluir la suscripción del usuario (si es el propietario)
+                .Include(u => u.Plan) 
                 .ToListAsync();
 
             return usuarios;

@@ -1,0 +1,30 @@
+﻿﻿@{
+ViewData["Title"] = "Recuperar Contraseña";
+}
+
+<h1>Recuperar Contraseña</h1>
+<link rel="stylesheet" href="~/css/style.css" />
+<p>Ingrese su correo electrónico para recuperar su contraseña:</p>
+
+<form method="post">
+    <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" class="form-control" id="email" name="email" required placeholder="Ingrese su correo electrónico">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger mt-2">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+    @if (ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success mt-2">
+            @ViewBag.SuccessMessage
+        </div>
+    }
+</form>

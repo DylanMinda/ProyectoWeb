@@ -1,62 +1,106 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\",
+  "WorkspaceRootPath": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.api\\controllers\\cancionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|solutionrelative:spotify.api\\controllers\\cancionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\wwwroot\\css\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.api\\controllers\\albumscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|solutionrelative:spotify.api\\controllers\\albumscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.modelos\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|solutionrelative:spotify.modelos\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.api\\controllers\\planescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|solutionrelative:spotify.api\\controllers\\planescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.api\\controllers\\playlistscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|solutionrelative:spotify.api\\controllers\\playlistscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.api\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\views\\login\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\views\\login\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\views\\login\\recuperarcontrase\u00F1a.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\views\\login\\recuperarcontrase\u00F1a.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.api\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|solutionrelative:spotify.api\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.modelos\\detallesplaylist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|solutionrelative:spotify.modelos\\detallesplaylist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|solutionrelative:spotify.api\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\services\\autorizarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\services\\autorizarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.modelos\\album.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.modelos\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|solutionrelative:spotify.modelos\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\interface\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\interface\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\interface\\iautorizarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\interface\\iautorizarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\views\\playlists\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\views\\playlists\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\views\\playlists\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\views\\playlists\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\views\\planes\\comprar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\views\\planes\\comprar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7F7C3B17-183D-4054-8AA8-AE2EFAD88D5C}|Spotify.APIConsumer\\Spotify.APIConsumer.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.apiconsumer\\crud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7F7C3B17-183D-4054-8AA8-AE2EFAD88D5C}|Spotify.APIConsumer\\Spotify.APIConsumer.csproj|solutionrelative:spotify.apiconsumer\\crud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.mvc\\spotify.mvc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E8C9605D-A1A0-444A-951E-B5DF0E4E2915}|Spotify.MVC\\Spotify.MVC.csproj|solutionrelative:spotify.mvc\\spotify.mvc.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.modelos\\album.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|solutionrelative:spotify.modelos\\album.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.modelos\\playlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.modelos\\detallesplaylist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|solutionrelative:spotify.modelos\\detallesplaylist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.modelos\\playlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|solutionrelative:spotify.modelos\\playlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.modelos\\plan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.modelos\\plan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|solutionrelative:spotify.modelos\\plan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.modelos\\cancion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{41795260-257A-47D2-B096-68466E50FA4F}|Spotify.Modelos\\Spotify.Modelos.csproj|solutionrelative:spotify.modelos\\cancion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\spotify\\spotify.modelos\\spotify.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|solutionrelative:spotify.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|c:\\users\\dylan\\onedrive\\documentos\\tercer semestre\\herramientas\\proyectoweb\\spotify.modelos\\spotify.api\\migrations\\20250702194747_postgressv01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B98A58FF-664A-4332-80A5-DB561E4928F5}|Spotify.API\\Spotify.API.csproj|solutionrelative:spotify.api\\migrations\\20250702194747_postgressv01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,180 +110,344 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "RecuperarContrase\u00F1a.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Login\\RecuperarContrase\u00F1a.cshtml",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Views\\Login\\RecuperarContrase\u00F1a.cshtml",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Login\\RecuperarContrase\u00F1a.cshtml",
+              "RelativeToolTip": "Spotify.MVC\\Views\\Login\\RecuperarContrase\u00F1a.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T05:05:32.563Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Login\\Index.cshtml",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Views\\Login\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Login\\Index.cshtml",
+              "RelativeToolTip": "Spotify.MVC\\Views\\Login\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T05:04:54.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.Modelos\\Usuario.cs",
+              "RelativeDocumentMoniker": "Spotify.Modelos\\Usuario.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.Modelos\\Usuario.cs",
+              "RelativeToolTip": "Spotify.Modelos\\Usuario.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T05:00:02.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AutorizarService.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Services\\AutorizarService.cs",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Services\\AutorizarService.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Services\\AutorizarService.cs",
+              "RelativeToolTip": "Spotify.MVC\\Services\\AutorizarService.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwEgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T04:57:13.8Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Spotify.MVC\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAwwHsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T03:43:43.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Program.cs",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Program.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Program.cs",
+              "RelativeToolTip": "Spotify.MVC\\Program.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAABMAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T04:07:57.257Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CancionesController.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Controllers\\CancionesController.cs",
-              "RelativeDocumentMoniker": "Spotify.API\\Controllers\\CancionesController.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Controllers\\CancionesController.cs",
-              "RelativeToolTip": "Spotify.API\\Controllers\\CancionesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T19:55:15.494Z",
+              "Title": "style.css",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\wwwroot\\css\\style.css",
+              "RelativeDocumentMoniker": "Spotify.MVC\\wwwroot\\css\\style.css",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\wwwroot\\css\\style.css",
+              "RelativeToolTip": "Spotify.MVC\\wwwroot\\css\\style.css",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAAAKEAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-07-03T03:47:38.67Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Spotify.MVC\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T05:54:23.751Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Login\\Register.cshtml",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Views\\Login\\Register.cshtml",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Login\\Register.cshtml",
+              "RelativeToolTip": "Spotify.MVC\\Views\\Login\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T05:05:56.486Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AlbumsController.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Controllers\\AlbumsController.cs",
-              "RelativeDocumentMoniker": "Spotify.API\\Controllers\\AlbumsController.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Controllers\\AlbumsController.cs",
-              "RelativeToolTip": "Spotify.API\\Controllers\\AlbumsController.cs",
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "Spotify.MVC\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "Spotify.MVC\\wwwroot\\css\\site.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T19:54:37.756Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "20250702194747_postgressV01.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Migrations\\20250702194747_postgressV01.cs",
-              "RelativeDocumentMoniker": "Spotify.API\\Migrations\\20250702194747_postgressV01.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Migrations\\20250702194747_postgressV01.cs",
-              "RelativeToolTip": "Spotify.API\\Migrations\\20250702194747_postgressV01.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T19:47:47.721Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PlanesController.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Controllers\\PlanesController.cs",
-              "RelativeDocumentMoniker": "Spotify.API\\Controllers\\PlanesController.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Controllers\\PlanesController.cs",
-              "RelativeToolTip": "Spotify.API\\Controllers\\PlanesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T19:39:15.144Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "Spotify.API\\Data\\AppDbContext.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "Spotify.API\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABAAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T19:31:57.803Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Usuario.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\Usuario.cs",
-              "RelativeDocumentMoniker": "Spotify.Modelos\\Usuario.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\Usuario.cs",
-              "RelativeToolTip": "Spotify.Modelos\\Usuario.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAuwBMAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T10:33:53.622Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-07-03T03:47:40.864Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Album.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\Album.cs",
-              "RelativeDocumentMoniker": "Spotify.Modelos\\Album.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\Album.cs",
-              "RelativeToolTip": "Spotify.Modelos\\Album.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T10:31:18.752Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Cancion.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\Cancion.cs",
-              "RelativeDocumentMoniker": "Spotify.Modelos\\Cancion.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\Cancion.cs",
-              "RelativeToolTip": "Spotify.Modelos\\Cancion.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T10:32:17.313Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "UsuariosController.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Controllers\\UsuariosController.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.API\\Controllers\\UsuariosController.cs",
               "RelativeDocumentMoniker": "Spotify.API\\Controllers\\UsuariosController.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Controllers\\UsuariosController.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.API\\Controllers\\UsuariosController.cs",
               "RelativeToolTip": "Spotify.API\\Controllers\\UsuariosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAwwB4AAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T19:37:49.77Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PlaylistsController.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Controllers\\PlaylistsController.cs",
-              "RelativeDocumentMoniker": "Spotify.API\\Controllers\\PlaylistsController.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\Controllers\\PlaylistsController.cs",
-              "RelativeToolTip": "Spotify.API\\Controllers\\PlaylistsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T19:38:22.917Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Plan.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\Plan.cs",
-              "RelativeDocumentMoniker": "Spotify.Modelos\\Plan.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\Plan.cs",
-              "RelativeToolTip": "Spotify.Modelos\\Plan.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA8AAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T13:39:00.794Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Playlist.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\Playlist.cs",
-              "RelativeDocumentMoniker": "Spotify.Modelos\\Playlist.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\Playlist.cs",
-              "RelativeToolTip": "Spotify.Modelos\\Playlist.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T10:32:33.633Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DetallesPlaylist.cs",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\DetallesPlaylist.cs",
-              "RelativeDocumentMoniker": "Spotify.Modelos\\DetallesPlaylist.cs",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.Modelos\\DetallesPlaylist.cs",
-              "RelativeToolTip": "Spotify.Modelos\\DetallesPlaylist.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-02T10:33:21.391Z"
+              "WhenOpened": "2025-07-03T05:03:30.24Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
+              "Title": "EmailService.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Services\\EmailService.cs",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Services\\EmailService.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Services\\EmailService.cs",
+              "RelativeToolTip": "Spotify.MVC\\Services\\EmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T04:50:43.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Interface\\IEmailService.cs",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Interface\\IEmailService.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Interface\\IEmailService.cs",
+              "RelativeToolTip": "Spotify.MVC\\Interface\\IEmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T04:50:05.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IAutorizarService.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Interface\\IAutorizarService.cs",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Interface\\IAutorizarService.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Interface\\IAutorizarService.cs",
+              "RelativeToolTip": "Spotify.MVC\\Interface\\IAutorizarService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T04:49:09.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "Spotify.MVC\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAA/wDAAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T04:45:36.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Playlists\\Index.cshtml",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Views\\Playlists\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Playlists\\Index.cshtml",
+              "RelativeToolTip": "Spotify.MVC\\Views\\Playlists\\Index.cshtml",
+              "ViewState": "AgIAABcAAAAAAAAAAAAnwB4AAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T04:38:30.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Spotify.MVC",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Spotify.MVC.csproj",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Spotify.MVC.csproj",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Spotify.MVC.csproj",
+              "RelativeToolTip": "Spotify.MVC\\Spotify.MVC.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-07-03T04:19:31.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Comprar.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Planes\\Comprar.cshtml",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Views\\Planes\\Comprar.cshtml",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Planes\\Comprar.cshtml",
+              "RelativeToolTip": "Spotify.MVC\\Views\\Planes\\Comprar.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T04:30:56.011Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CRUD.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.APIConsumer\\CRUD.cs",
+              "RelativeDocumentMoniker": "Spotify.APIConsumer\\CRUD.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.APIConsumer\\CRUD.cs",
+              "RelativeToolTip": "Spotify.APIConsumer\\CRUD.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-03T04:29:16.699Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Playlists\\Create.cshtml",
+              "RelativeDocumentMoniker": "Spotify.MVC\\Views\\Playlists\\Create.cshtml",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.MVC\\Views\\Playlists\\Create.cshtml",
+              "RelativeToolTip": "Spotify.MVC\\Views\\Playlists\\Create.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABMAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-03T04:07:39.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Album.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.Modelos\\Album.cs",
+              "RelativeDocumentMoniker": "Spotify.Modelos\\Album.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.Modelos\\Album.cs",
+              "RelativeToolTip": "Spotify.Modelos\\Album.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T10:31:18.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Plan.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.Modelos\\Plan.cs",
+              "RelativeDocumentMoniker": "Spotify.Modelos\\Plan.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.Modelos\\Plan.cs",
+              "RelativeToolTip": "Spotify.Modelos\\Plan.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAIBJwA8AAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T13:39:00.794Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Playlist.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.Modelos\\Playlist.cs",
+              "RelativeDocumentMoniker": "Spotify.Modelos\\Playlist.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.Modelos\\Playlist.cs",
+              "RelativeToolTip": "Spotify.Modelos\\Playlist.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwA4AAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T10:32:33.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "DetallesPlaylist.cs",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.Modelos\\DetallesPlaylist.cs",
+              "RelativeDocumentMoniker": "Spotify.Modelos\\DetallesPlaylist.cs",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.Modelos\\DetallesPlaylist.cs",
+              "RelativeToolTip": "Spotify.Modelos\\DetallesPlaylist.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-02T10:33:21.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.API\\appsettings.json",
               "RelativeDocumentMoniker": "Spotify.API\\appsettings.json",
-              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\ProyectoWeb\\Spotify.Modelos\\Spotify.API\\appsettings.json",
+              "ToolTip": "C:\\Users\\Dylan\\OneDrive\\Documentos\\Tercer Semestre\\Herramientas\\Spotify\\Spotify.Modelos\\Spotify.API\\appsettings.json",
               "RelativeToolTip": "Spotify.API\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-07-02T17:01:49.862Z"
+              "WhenOpened": "2025-07-02T17:01:49.862Z",
+              "EditorCaption": ""
             }
           ]
         }
