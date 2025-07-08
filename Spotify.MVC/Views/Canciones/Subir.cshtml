@@ -1,0 +1,46 @@
+﻿@model Spotify.MVC.ViewModels.CancionUploadViewModel
+@{
+    ViewData["Title"] = "Subir Canción";
+}
+
+<h2>Subir Canción</h2>
+
+<form asp-action="Subir" method="post" enctype="multipart/form-data">
+    <div class="form-group mb-3">
+        <label asp-for="Titulo" class="form-label"></label>
+        <input asp-for="Titulo" class="form-control" />
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Archivo" class="form-label"></label>
+        <input asp-for="Archivo" type="file" class="form-control" />
+        <span asp-validation-for="Archivo" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Duracion" class="form-label"></label>
+        <input asp-for="Duracion" class="form-control" placeholder="hh:mm:ss" />
+        <span asp-validation-for="Duracion" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="Genero" class="form-label"></label>
+        <input asp-for="Genero" class="form-control"/>
+        <span asp-validation-for="Genero" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-3">
+        <label asp-for="ArtistaId" class="form-label"></label>
+        <input asp-for="ArtistaId" class="form-control" />
+        <span asp-validation-for="ArtistaId" class="text-danger"></span>
+    </div>
+    <div class="form-group mb-4">
+        <label asp-for="AlbumId" class="form-label"></label>
+        <input asp-for="AlbumId" class="form-control" />
+        <span asp-validation-for="AlbumId" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Subir Canción</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

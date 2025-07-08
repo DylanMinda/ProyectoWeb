@@ -1,0 +1,27 @@
+﻿@model Spotify.Modelos.Usuario
+
+<h2>Editar Usuario</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="Nombre">Nombre</label>
+        <input type="text" id="Nombre" name="Nombre" class="form-control" value="@Model.Nombre" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <input type="email" id="Email" name="Email" class="form-control" value="@Model.Email" required />
+    </div>
+
+    <div class="form-group">
+        <label for="TipoUsuario">Tipo de Usuario</label>
+        <select asp-for="TipoUsuario" class="form-control">
+            @foreach (var tipo in ViewBag.TiposUsuario as List<string>)
+            {
+                <option value="@tipo" selected="@(Model.TipoUsuario == tipo ? "selected" : null)">@tipo</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+</form>

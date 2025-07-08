@@ -13,6 +13,6 @@ namespace Spotify.Modelos
         public DateTime FechaCreacion { get; set; }
         public int UsuarioId { get; set; } // ID del usuario que creó la playlist
         public virtual List<DetallesPlaylist>? DetallesPlaylists { get; set; } // Lista de canciones en la playlist
-        public Usuario? Creador { get; set; } // Usuario que creó la playlist
+        public virtual Usuario? Creador { get; set; } // Usuario que creó la playlist
     }
 }

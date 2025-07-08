@@ -8,7 +8,6 @@
 <div class="particles"></div>
 <link rel="stylesheet" href="~/css/playlistsIndex.css">
 
-
 <div class="main-container">
     <h1 class="page-title">Mis Playlists</h1>
 
@@ -18,7 +17,21 @@
         </a>
     </div>
 
-    @if (Model != null && Model.Any())
+    @* Si el usuario no tiene ninguna playlist, mostramos el estado vacío *@
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <div class="empty-icon">
+                <i class="fas fa-music"></i>
+            </div>
+            <h2>No tienes playlists aún</h2>
+            <p>Crea tu primera playlist para comenzar a organizar tu música favorita</p>
+            <a href="@Url.Action("Create")" class="create-btn">
+                <i class="fas fa-plus"></i> Crear Mi Primera Playlist
+            </a>
+        </div>
+    }
+    else
     {
         <div class="playlists-grid">
             @foreach (var playlist in Model)
@@ -39,13 +52,13 @@
                     </div>
 
                     <div class="playlist-actions">
-                        <a href="@Url.Action("Details", new { id = playlist.Id })" class="action-btn details-btn">
+                        <a asp-action="Details" asp-route-id="@playlist.Id" class="action-btn details-btn">
                             <i class="fas fa-eye"></i> Ver
                         </a>
-                        <a href="@Url.Action("Edit", new { id = playlist.Id })" class="action-btn edit-btn">
+                        <a asp-action="Edit" asp-route-id="@playlist.Id" class="action-btn edit-btn">
                             <i class="fas fa-edit"></i> Editar
                         </a>
-                        <a href="@Url.Action("Delete", new { id = playlist.Id })" class="action-btn delete-btn">
+                        <a asp-action="Delete" asp-route-id="@playlist.Id" class="action-btn delete-btn">
                             <i class="fas fa-trash"></i> Eliminar
                         </a>
                     </div>
@@ -53,17 +66,9 @@
             }
         </div>
     }
-    else
-    {
-        <div class="empty-state">
-            <div class="empty-icon">
-                <i class="fas fa-music"></i>
-            </div>
-            <h2>No tienes playlists aún</h2>
-            <p>Crea tu primera playlist para comenzar a organizar tu música favorita</p>
-            <a href="@Url.Action("Create")" class="create-btn">
-                <i class="fas fa-plus"></i> Crear Mi Primera Playlist
-            </a>
-        </div>
-    }
+    @* Boton que regresa al home *@
+    <a asp-controller="Home" asp-action="Dashboard" class="btn btn-secondary">
+        <i class="fas fa-home"></i> Volver al Home
+    </a>
+
 </div>

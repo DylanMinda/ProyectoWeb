@@ -1,19 +1,39 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Spotify.APIConsumer;
 using Spotify.Modelos;
 
 namespace Spotify.MVC.Controllers
 {
     public class PlanesController : Controller
     {
+        private const string EndPoint = "https://localhost:7028/api/Planes";
         // GET: PlanesController - Mostrar vista de selección de planes
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    // Crear lista de planes disponibles
+        //    var planes = ObtenerPlanesDisponibles();
+        //    return View(planes);
+        //}
+        public PlanesController()
         {
-            // Crear lista de planes disponibles
-            var planes = ObtenerPlanesDisponibles();
-            return View(planes);
+            CRUD<Plan>.EndPoint = EndPoint; // Establecemos el endpoint de la API
         }
 
+        // GET: PlanesController - Mostrar todos los planes
+        public ActionResult Index()
+        {
+            try
+            {
+                var planes = CRUD<Plan>.GetAll();  // Obtener los planes desde la API
+                return View(planes);  // Pasar los planes a la vista
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al cargar los planes: " + ex.Message;
+                return View();
+            }
+        }
         // POST: Seleccionar un plan
         [HttpPost]
         [ValidateAntiForgeryToken]

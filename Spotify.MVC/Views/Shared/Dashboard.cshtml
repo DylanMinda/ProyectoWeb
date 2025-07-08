@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - BeatHouse</title>
+    <link rel="stylesheet" href="~/css/dashboard.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-music"></i> BeatHouse
+        </div>
+        <ul class="nav-links">
+            <li><a href="/Home/Logout" class="btn-logout">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor principal -->
+    <main class="dashboard-container">
+        <!-- Sección de bienvenida -->
+        <section class="welcome-section">
+            <h1>Bienvenido de nuevo, <span class="user-name">Usuario</span></h1>
+            <p>¡Explora, crea y comparte música al máximo!</p>
+        </section>
+
+        <!-- Funciones del Dashboard -->
+        <section class="functions-section">
+            <div class="function-card">
+                <i class="fas fa-play-circle"></i>
+                <h3>Explorar Música</h3>
+                <a href="/Music/Explore" class="btn">Explorar</a>
+            </div>
+            <div class="function-card">
+                <i class="fas fa-microphone-alt"></i>
+                <h3>Crear Beats</h3>
+                <a href="/Beats/Create" class="btn">Crear</a>
+            </div>
+            <div class="function-card">
+                <i class="fas fa-music"></i>
+                <h3>Mis Playlists</h3>
+                <a href="/Playlists/Manage" class="btn">Gestionar</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 BeatHouse. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="~/js/site.js"></script>
+</body>
+</html>

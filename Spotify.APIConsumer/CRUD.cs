@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace Spotify.APIConsumer
@@ -105,5 +106,39 @@ namespace Spotify.APIConsumer
                     }
                 }
             }
+
+        public static T UploadWithFile(
+                  string titulo,
+                  Stream fileStream,
+                  string fileName,
+                  string contentType,
+                  string genero,
+                  TimeSpan duracion,
+                  int artistaId,
+                  int albumId)
+        {
+            using var client = new HttpClient();
+            // prepara multipart/form-data
+            using var content = new MultipartFormDataContent();
+            content.Add(new StringContent(titulo), "Titulo");
+            content.Add(new StringContent(duracion.ToString()), "Duracion");
+            content.Add(new StringContent(genero), "Genero");
+            content.Add(new StringContent(artistaId.ToString()), "ArtistaId");
+            content.Add(new StringContent(albumId.ToString()), "AlbumId");
+
+            // archivo
+            var fileContent = new StreamContent(fileStream);
+            fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse(contentType);
+            content.Add(fileContent, "Archivo", fileName);
+
+            // POST a /api/Canciones/upload
+            var resp = client.PostAsync($"{EndPoint}/upload", content).Result;
+            if (!resp.IsSuccessStatusCode)
+                throw new Exception($"Error: {resp.StatusCode}");
+
+            var json = resp.Content.ReadAsStringAsync().Result;
+            return JsonConvert.DeserializeObject<T>(json)!;
         }
+
+    }
 }

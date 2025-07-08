@@ -1,0 +1,20 @@
+﻿body {
+    background-color: #1C1C1C; /* Negro Profundo */
+    color: white;
+}
+
+.btn-recargar {
+    background-color: #8CE70C; /* Verde Neón */
+    color: #1C1C1C; /* Negro Profundo */
+}
+
+    .btn-recargar:hover {
+        background-color: #6F2DA8; /* Púrpura Principal */
+    }
+
+.form-container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #6D6E71; /* Gris Acero */
+    border-radius: 10px;
+}

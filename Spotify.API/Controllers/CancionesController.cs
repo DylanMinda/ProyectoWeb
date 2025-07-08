@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Spotify.API.DTO;
 using Spotify.Modelos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Spotify.API.Controllers
 {
@@ -14,10 +17,17 @@ namespace Spotify.API.Controllers
     public class CancionesController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private readonly BlobServiceClient _blobService;
+        private readonly string _containerName;
 
-        public CancionesController(AppDbContext context)
+        public CancionesController(
+            AppDbContext context,
+            BlobServiceClient blobService,
+            IConfiguration config)
         {
             _context = context;
+            _blobService = blobService;
+            _containerName = config["AzureStorage:ContainerName"]!;
         }
 
         // GET: api/Canciones
@@ -103,5 +113,59 @@ namespace Spotify.API.Controllers
         {
             return _context.Canciones.Any(e => e.Id == id);
         }
+
+        [HttpPost("upload")]
+        public async Task<ActionResult<Cancion>> UploadCancion([FromForm] CancionSubir dto)
+        {
+            // 1. Obtener/crear contenedor
+            var container = _blobService.GetBlobContainerClient(_containerName);
+            await container.CreateIfNotExistsAsync();
+
+            // 2. Generar nombre único y subir
+            var ext = Path.GetExtension(dto.Archivo.FileName);
+            var blobName = $"{Guid.NewGuid()}{ext}";
+            var blob = container.GetBlobClient(blobName);
+            await using var stream = dto.Archivo.OpenReadStream();
+            await blob.UploadAsync(stream, new BlobHttpHeaders { ContentType = dto.Archivo.ContentType });
+
+            // 3. Mapear DTO → entidad y guardar en BD
+            var cancion = new Cancion
+            {
+                Titulo = dto.Titulo,
+                ArchivoUrl = blob.Uri.ToString(),
+                Duracion = dto.Duracion,
+                Genero = dto.Genero,
+                ArtistaId = dto.ArtistaId,
+                AlbumId = dto.AlbumId
+            };
+
+            _context.Canciones.Add(cancion);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetCancion), new { id = cancion.Id }, cancion);
+        }
+
+
+        // En CancionesController.cs
+        [HttpPost("{id}/incrementar-reproduccion")]
+        public async Task<IActionResult> IncrementarReproduccion(int id)
+        {
+            var cancion = await _context.Canciones.FindAsync(id);
+            if (cancion == null)
+            {
+                return NotFound();
+            }
+
+            // Incrementamos la cantidad de reproducciones
+            cancion.TotalReproducciones++;
+
+            // Guardamos los cambios en la base de datos
+            _context.Canciones.Update(cancion);
+            await _context.SaveChangesAsync();
+
+            return NoContent(); // Respuesta exitosa sin contenido
+        }
+
+
     }
 }

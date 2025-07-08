@@ -1,0 +1,69 @@
+﻿<!-- VISTA EDITAR PLAYLIST -->
+@model Spotify.Modelos.Playlist
+@{
+    ViewData["Title"] = "Editar Playlist";
+    var allSongs = ViewBag.AllSongs as List<Spotify.Modelos.Cancion>;
+    var selected = ViewBag.SelectedSongIds as List<int>;
+}
+
+<link rel="stylesheet" href="~/css/playlistsBotones.css">
+<div class="beathouse-container">
+    <div class="beathouse-header">
+        <div class="header-glow"></div>
+        <h1 class="beathouse-title">
+            <i class="fas fa-edit"></i>
+            EDITAR <span class="highlight">@Model.Nombre</span>
+        </h1>
+    </div>
+
+    <div class="beathouse-card">
+        <form asp-action="Edit" method="post" class="beathouse-form">
+            @Html.AntiForgeryToken()
+            <input asp-for="UsuarioId" type="hidden" />
+            <input type="hidden" asp-for="Id" />
+
+            <div class="input-group">
+                <label asp-for="Nombre" class="beathouse-label">
+                    <i class="fas fa-music"></i>
+                    NOMBRE DE LA PLAYLIST
+                </label>
+                <input asp-for="Nombre" class="beathouse-input" placeholder="Ingresa el nombre..." />
+            </div>
+
+            <div class="songs-section">
+                <h4 class="section-title">
+                    <i class="fas fa-list"></i>
+                    SELECCIONAR CANCIONES
+                    <div class="title-line"></div>
+                </h4>
+
+                <div class="songs-grid">
+                    @foreach (var c in allSongs)
+                    {
+                        <div class="song-item">
+                            <input type="checkbox" name="selectedSongs" value="@c.Id"
+                                   @(selected.Contains(c.Id) ? "checked" : "")
+                                   class="custom-checkbox" id="song-@c.Id" />
+                            <label for="song-@c.Id" class="song-label">
+                                <div class="checkbox-custom"></div>
+                                <span class="song-title">@c.Titulo</span>
+                                <div class="song-pulse"></div>
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary-custom">
+                    <i class="fas fa-save"></i>
+                    GUARDAR CAMBIOS
+                </button>
+                <a asp-action="Index" class="btn btn-secondary-custom">
+                    <i class="fas fa-times"></i>
+                    CANCELAR
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

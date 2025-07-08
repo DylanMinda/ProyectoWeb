@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Dashboard Artista";
+}
+
+<h2>Bienvenido al Dashboard, @User.Identity.Name</h2>
+
+<!-- Gestión de Musicas -->
+<div class="col-md-4">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Gestión de Musica</h5>
+        </div>
+        <div class="card-body">
+            <p>Sube tu propia cnacion aqui</p>
+            <a asp-controller="Canciones" asp-action="Subir" class="btn btn-outline-primary">Subir cancion</a>
+        </div>
+    </div>
+</div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4>Crea tu álbum</h4>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-action="CrearAlbum">
+                    <div class="form-group">
+                        <label for="albumTitulo">Título del Álbum</label>
+                        <input type="text" class="form-control" id="albumTitulo" name="albumTitulo" required placeholder="Introduce el título del álbum">
+                    </div>
+                    <div class="form-group">
+                        <label for="portadaAlbum">Sube la portada del álbum</label>
+                        <input type="file" class="form-control" id="portadaAlbum" name="portadaAlbum" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcionAlbum">Descripción del Álbum</label>
+                        <textarea class="form-control" id="descripcionAlbum" name="descripcionAlbum" rows="3" placeholder="Escribe una descripción para el álbum (opcional)"></textarea>
+                    </div>
+
+                    <button type="button" class="btn btn-primary mt-3" onclick="location.href='@Url.Action("Create", "Albums")'">Crear Álbum</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <h5>Mis Álbumes y Canciones</h5>
+    <p>Aquí podrás ver todos los álbumes y canciones que has subido.</p>
+    <!-- Aquí se pueden listar las canciones y álbumes subidos del artista -->
+</div>
+

@@ -1,0 +1,39 @@
+﻿@model List<Spotify.Modelos.Usuario>  
+
+@{
+    ViewData["Title"] = "Lista de Usuarios";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Tipo de Usuario</th>
+            <th>Fecha de Registro</th>
+            <th>Plan</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>@usuario.Id</td>
+                <td>@usuario.Nombre</td>
+                <td>@usuario.Email</td>
+                <td>@usuario.TipoUsuario</td>
+                <td>@usuario.FechaRegistro.ToString("dd/MM/yyyy")</td>
+                <td>@(usuario.Plan != null ? usuario.Plan.Nombre : "Sin Plan")</td>
+                <td>
+                    <!-- Aquí puedes agregar enlaces para editar o eliminar usuarios -->
+                    <a href="@Url.Action("Edit", "Usuarios", new { id = usuario.Id })">Editar</a> |
+                    <a href="@Url.Action("Delete", "Usuarios", new { id = usuario.Id })">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

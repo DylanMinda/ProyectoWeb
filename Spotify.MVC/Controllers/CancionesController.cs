@@ -1,83 +1,42 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Spotify.APIConsumer;
+using Spotify.Modelos;
+using Spotify.MVC.ViewModels;
 
 namespace Spotify.MVC.Controllers
 {
     public class CancionesController : Controller
     {
-        // GET: CancionesController
-        public ActionResult Index()
+        public IActionResult Index()
         {
-            return View();
+            var lista = CRUD<Cancion>.GetAll();
+            return View(lista);
         }
+        
+        [HttpGet]
+        public IActionResult Subir() => View(new CancionUploadViewModel());
 
-        // GET: CancionesController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: CancionesController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CancionesController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Subir(CancionUploadViewModel vm)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            if (!ModelState.IsValid) return View(vm);
+
+            // abre el stream y llama al CRUD
+            var cancion = CRUD<Cancion>.UploadWithFile(
+                vm.Titulo,
+                vm.Archivo.OpenReadStream(),
+                vm.Archivo.FileName,
+                vm.Archivo.ContentType,
+                vm.Genero,
+                vm.Duracion,
+                vm.ArtistaId,
+                vm.AlbumId
+            );
+
+            // redirige o maneja la respuesta
+            return RedirectToAction("Index");
         }
 
-        // GET: CancionesController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CancionesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CancionesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CancionesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

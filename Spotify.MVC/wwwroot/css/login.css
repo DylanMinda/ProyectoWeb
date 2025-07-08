@@ -1,0 +1,41 @@
+﻿/* EVA-01 Inspired Authentication Styles */
+:root {
+    --eva-purple: #6F2DA8;
+    --eva-green: #8CE70C;
+    --eva-black: #1C1C1C;
+    --eva-gray: #6D6E71;
+    --eva-orange: #FBAF00;
+}
+
+body {
+    background: linear-gradient(135deg, var(--eva-black) 0%, var(--eva-purple) 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos para la vista de LOGIN (con Bootstrap) */
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.col-md-4 {
+    background: rgba(28, 28, 28, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    border: 2px solid var(--eva-purple);
+    box-shadow: 0 0 20px rgba(111, 45, 168, 0.3), 0 0 40px rgba(140, 231, 12, 0.1), inset 0 0 20px rgba(28, 28, 28, 0.8);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    max-width: 400px;
+    width: 100%;
+}

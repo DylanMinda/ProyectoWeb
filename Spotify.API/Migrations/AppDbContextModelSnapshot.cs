@@ -61,6 +61,10 @@ namespace Spotify.API.Migrations
                     b.Property<int>("AlbumId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("ArchivoUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("ArtistaId")
                         .HasColumnType("integer");
 
@@ -75,14 +79,11 @@ namespace Spotify.API.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("UsuarioId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AlbumId");
 
-                    b.HasIndex("UsuarioId");
+                    b.HasIndex("ArtistaId");
 
                     b.ToTable("Canciones");
                 });
@@ -218,11 +219,15 @@ namespace Spotify.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Spotify.Modelos.Usuario", null)
+                    b.HasOne("Spotify.Modelos.Usuario", "ArtistaCodigoNav")
                         .WithMany("Canciones")
-                        .HasForeignKey("UsuarioId");
+                        .HasForeignKey("ArtistaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Album");
+
+                    b.Navigation("ArtistaCodigoNav");
                 });
 
             modelBuilder.Entity("Spotify.Modelos.DetallesPlaylist", b =>

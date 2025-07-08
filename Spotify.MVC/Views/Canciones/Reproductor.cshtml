@@ -1,0 +1,25 @@
+﻿@{
+    // URL de la canción almacenada en Azure Blob Storage
+    var songUrl = "https://miaplicacionstorage.blob.core.windows.net/canciones/WHY%20WE%20FIGHT%20EGO.mp3";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Canción</title>
+</head>
+<body>
+
+    <h2>Reproductor de Canción</h2>
+    <p>Escucha la canción:</p>
+
+    <!-- Reproductor de audio -->
+    <audio controls>
+        <source src="@songUrl" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+</body>
+</html>

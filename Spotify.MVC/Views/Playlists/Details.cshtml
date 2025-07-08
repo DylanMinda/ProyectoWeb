@@ -1,0 +1,73 @@
+﻿<!-- VISTA DETALLES PLAYLIST -->
+@model Spotify.Modelos.Playlist
+@{
+    ViewData["Title"] = "Detalles de Playlist";
+}
+<link rel="stylesheet" href="~/css/playlistsBotones.css">
+
+<div class="beathouse-container">
+    <div class="beathouse-header">
+        <div class="header-glow"></div>
+        <h1 class="beathouse-title">
+            <i class="fas fa-headphones"></i>
+            <span class="highlight">@Model.Nombre</span>
+        </h1>
+        <div class="playlist-meta">
+            <span class="meta-item">
+                <i class="fas fa-calendar"></i>
+                Creada el @Model.FechaCreacion.ToString("dd/MM/yyyy")
+            </span>
+            <span class="meta-item">
+                <i class="fas fa-user"></i>
+                por @Model.Creador?.Nombre
+            </span>
+        </div>
+    </div>
+
+    <div class="beathouse-card">
+        <div class="songs-section">
+            <h3 class="section-title">
+                <i class="fas fa-music"></i>
+                LISTA DE REPRODUCCIÓN
+                <div class="title-line"></div>
+            </h3>
+
+            @if (Model.DetallesPlaylists?.Any() == true)
+            {
+                <div class="songs-list">
+                    @foreach (var d in Model.DetallesPlaylists)
+                    {
+                        <div class="song-track">
+                            <div class="track-number">@(Model.DetallesPlaylists.ToList().IndexOf(d) + 1)</div>
+                            <div class="track-info">
+                                <span class="track-title">@d.Cancion.Titulo</span>
+                                <span class="track-duration">@d.Cancion.Duracion.ToString(@"mm\:ss")</span>
+                            </div>
+                            <div class="track-visualizer">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="empty-state">
+                    <i class="fas fa-music"></i>
+                    <p>No hay canciones en esta playlist.</p>
+                    <span>Agrega algunas canciones para comenzar</span>
+                </div>
+            }
+        </div>
+
+        <div class="button-group">
+            <a asp-action="Index" class="btn btn-secondary-custom">
+                <i class="fas fa-arrow-left"></i>
+                VOLVER
+            </a>
+        </div>
+    </div>
+</div>

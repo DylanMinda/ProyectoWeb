@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Dashboard Admin";
+}
+
+<h2>Bienvenido, @User.Identity.Name <small>(Administrador)</small></h2>
+
+<div class="row gy-4">
+    <!-- Gestionar Usuarios -->
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Gestión de Usuarios</h5>
+            </div>
+            <div class="card-body">
+                <p>Ver, editar roles o eliminar cuentas de usuarios.</p>
+                <a asp-controller="Usuarios" asp-action="Index" class="btn btn-outline-primary">Ir a Usuarios</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gestión de Canciones -->
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Gestión de Canciones</h5>
+            </div>
+            <div class="card-body">
+                <p>Ver, editar o eliminar canciones.</p>
+                <a asp-controller="Canciones" asp-action="Index" class="btn btn-outline-primary">Ir a Canciones</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gestión de Planes -->
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Gestión de Planes</h5>
+            </div>
+            <div class="card-body">
+                <p>Ver, editar o eliminar planes.</p>
+                <a asp-controller="Planes" asp-action="Index" class="btn btn-outline-primary">Ir a Planes</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gestión de Albums -->
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Gestión de Albums</h5>
+            </div>
+            <div class="card-body">
+                <p>Ver, editar o eliminar planes.</p>
+                <a asp-controller="Albums" asp-action="Index" class="btn btn-outline-primary">Ir a Albums</a>
+            </div>
+        </div>
+    </div>
+</div>

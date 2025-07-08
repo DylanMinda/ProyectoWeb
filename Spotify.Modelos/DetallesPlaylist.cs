@@ -12,7 +12,7 @@ namespace Spotify.Modelos
         public int PlaylistId { get; set; }
         public int CancionId { get; set; }
 
-        public Playlist?Playlist { get; set; }
-        public Cancion? Cancion { get; set; } 
+        public virtual Playlist? Playlist { get; set; }
+        public virtual Cancion? Cancion { get; set; } 
     }
 }

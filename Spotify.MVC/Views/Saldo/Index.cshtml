@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Recargar Saldo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Spotify.MVC.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #1C1C1C; /* Negro Profundo */
+            color: white;
+        }
+
+        .btn-recargar {
+            background-color: #8CE70C; /* Verde Neón */
+            color: #1C1C1C; /* Negro Profundo */
+        }
+
+            .btn-recargar:hover {
+                background-color: #6F2DA8; /* Púrpura Principal */
+            }
+
+        .form-container {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #6D6E71; /* Gris Acero */
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Spotify.MVC</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            <h2 class="text-center text-success">Recargar Saldo</h2>
+            <div class="form-container">
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="monto" class="form-label">Monto a recargar</label>
+                        <input type="number" class="form-control" id="monto" name="monto" required>
+                    </div>
+                    <button type="submit" class="btn btn-recargar">Recargar</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - Spotify.MVC
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

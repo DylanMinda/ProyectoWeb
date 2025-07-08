@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Spotify.Modelos.Cancion>
+
+@{
+    ViewData["Title"] = "Listado de Canciones";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="SubirCancion" class="btn btn-primary">
+        <i class="bi bi-upload"></i> Subir nueva canción
+    </a>
+</p>
+
+<table class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Título</th>
+            <th>Duración</th>
+            <th>Genero</th>
+            <th>Reproducción</th>
+            <th>Reproducciones</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Titulo</td>
+                <td>@item.Duracion.ToString(@"hh\:mm\:ss")</td>
+                <td>@item.Genero</td>
+                <td>
+                    @* Reproductor de audio *@
+                    <audio controls class="audio-player" data-id="@item.Id" style="max-width:200px;">
+                        <source src="@item.ArchivoUrl" type="audio/mp3" />
+                        Tu navegador no soporta el elemento
+                        <code>audio</code>.
+                    </audio>
+                </td>
+                <td>@item.TotalReproducciones</td>
+                <td>
+                    @* Si tienes acciones como Detalles o Eliminar en MVC *@
+                    <a asp-action="Detalles" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalles</a>
+                    <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+       
+    </script>
+}

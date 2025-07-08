@@ -1,0 +1,44 @@
+﻿<!-- VISTA ELIMINAR PLAYLIST -->
+@model Spotify.Modelos.Playlist
+@{
+    ViewData["Title"] = "Eliminar Playlist";
+}
+<link rel="stylesheet" href="~/css/playlistsBotones.css">
+
+<div class="beathouse-container">
+    <div class="beathouse-header danger">
+        <div class="header-glow danger"></div>
+        <h1 class="beathouse-title">
+            <i class="fas fa-exclamation-triangle"></i>
+            ELIMINAR PLAYLIST
+        </h1>
+    </div>
+
+    <div class="beathouse-card danger">
+        <div class="warning-section">
+            <div class="warning-icon">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+            <div class="warning-content">
+                <h3>¿Eliminar "<span class="highlight">@Model.Nombre</span>"?</h3>
+                <p>Esta acción no se puede deshacer. La playlist y todas sus canciones se eliminarán permanentemente.</p>
+            </div>
+        </div>
+
+        <form asp-action="Delete" method="post" class="beathouse-form">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-danger-custom">
+                    <i class="fas fa-trash"></i>
+                    SÍ, ELIMINAR
+                </button>
+                <a asp-action="Index" class="btn btn-secondary-custom">
+                    <i class="fas fa-shield-alt"></i>
+                    NO, VOLVER
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
