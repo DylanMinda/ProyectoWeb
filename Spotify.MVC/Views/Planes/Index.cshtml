@@ -1,0 +1,163 @@
+﻿@model List<Spotify.Modelos.Plan>
+@{
+    ViewBag.Title = "Seleccionar Plan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <!-- Asegúrate de que este archivo Layout esté configurado correctamente -->
+}
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: linear-gradient(45deg, #8CE70C, #6F2DA8); color: #1C1C1C; padding: 1rem; border-radius: 10px; box-shadow: 0 10px 25px rgba(140, 231, 12, 0.3);">
+        @TempData["Message"]
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: linear-gradient(45deg, #ff4444, #cc0000); color: white; padding: 1rem; border-radius: 10px; box-shadow: 0 10px 25px rgba(255, 68, 68, 0.3);">
+        @TempData["Error"]
+    </div>
+}
+
+<div class="particles"></div>
+<link rel="stylesheet" href="~/css/planes.css">
+
+<div class="plans-container">
+    <h1 class="plans-title">Elige tu Plan</h1>
+    <p class="plans-subtitle">Desbloquea todo el potencial de tu experiencia musical</p>
+
+    <div class="plans-grid">
+        @foreach (var plan in Model)
+        {
+            <div class="plan-card @(plan.Nombre.ToLower() == "premium" ? "featured" : "")">
+                @if (plan.Nombre.ToLower() == "premium")
+                {
+                    <div class="plan-badge">Más Popular</div>
+                }
+
+                <h2 class="plan-name">@plan.Nombre</h2>
+                <div class="plan-price">
+                    @if (plan.PrecioMensual == 0)
+                    {
+                        <text>Gratis</text>
+                    }
+                    else
+                    {
+                        <text>$@plan.PrecioMensual.ToString("F2")</text>
+                    }
+                </div>
+                <div class="plan-period">
+                    @if (plan.PrecioMensual == 0)
+                    {
+                        <text>Para siempre</text>
+                    }
+                    else
+                    {
+                        <text>por mes</text>
+                    }
+                </div>
+
+                <ul class="plan-features">
+                    @{
+                        var caracteristicas = ObtenerCaracteristicasPlan(plan.Nombre);
+                        foreach (var caracteristica in caracteristicas)
+                        {
+                            <li>@caracteristica</li>
+                        }
+                    }
+                    <li>@plan.Descripcion</li>
+                    @if (plan.MaximoUsuarios > 1)
+                    {
+                        <li>Hasta @plan.MaximoUsuarios usuarios</li>
+                    }
+                </ul>
+
+                @using (Html.BeginForm("SelectPlan", "Planes", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("planId", ObtenerPlanStringId(plan.Nombre))
+                    <button type="submit" class="plan-button @(plan.Nombre.ToLower() == "premium" ? "featured" : "")">
+                        @if (plan.PrecioMensual == 0)
+                        {
+                            <text>Comenzar Gratis</text>
+                        }
+                        else
+                        {
+                            <text>Elegir @plan.Nombre</text>
+                        }
+                    </button>
+                }
+            </div>
+        }
+    </div>
+
+    <!-- Sección para planes adicionales -->
+    <div class="additional-plans">
+        <h3>¿Necesitas un plan personalizado?</h3>
+        <p>
+            Si tienes necesidades específicas o representas a una organización más grande,
+            contáctanos para crear un plan que se adapte perfectamente a tus requerimientos.
+            Ofrecemos soluciones personalizadas con precios especiales para empresas,
+            instituciones educativas y organizaciones sin fines de lucro.
+        </p>
+        <div style="text-align: center; margin-top: 2rem;">
+            @Html.ActionLink("Contactar Ventas", "Contact", "Home", null, new { @class = "plan-button", @style = "display: inline-block; text-decoration: none;" })
+        </div>
+    </div>
+</div>
+
+@functions {
+    List<string> ObtenerCaracteristicasPlan(string nombrePlan)
+    {
+        return nombrePlan.ToLower() switch
+        {
+            "básico" => new List<string>
+            {
+                "Acceso limitado a canciones",
+                "Anuncios entre canciones",
+                "Calidad de audio estándar",
+                "Reproducción aleatoria",
+                "Máximo 5 saltos por hora"
+            },
+            "premium" => new List<string>
+            {
+                "Acceso ilimitado a toda la música",
+                "Sin anuncios",
+                "Calidad de audio HD",
+                "Descarga para escuchar offline",
+                "Saltos ilimitados",
+                "Listas de reproducción personalizadas"
+            },
+            "familiar" => new List<string>
+            {
+                "Todas las funciones Premium",
+                "Mezcla familiar",
+                "Control parental",
+                "Perfiles individuales",
+                "Reproducción simultánea"
+            },
+            "estudiante" => new List<string>
+            {
+                "Todas las funciones Premium",
+                "Descuento especial para estudiantes",
+                "Verificación académica requerida",
+                "Acceso a contenido educativo",
+                "Podcasts académicos",
+                "Renovación anual"
+            },
+            _ => new List<string>()
+        };
+    }
+
+    string ObtenerPlanStringId(string nombrePlan)
+    {
+        return nombrePlan.ToLower() switch
+        {
+            "básico" => "basic",
+            "premium" => "premium",
+            "familiar" => "family",
+            "estudiante" => "student",
+            _ => nombrePlan.ToLower().Replace(" ", "")
+        };
+    }
+}

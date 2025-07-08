@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Comprar";
+}
+
+
+<h1>Comprar: @Model.Nombre</h1>
+<form asp-action="Comprar" method="post">
+    <input type="hidden" name="planId" value="@Model.Id" />
+
+    <div class="form-group">
+        <label for="tokenPago">Token de Pago PeiGo</label>
+        <input type="text"
+               class="form-control"
+               id="tokenPago"
+               name="tokenPago"
+               placeholder="Ingresa tu token de PeiGo"
+               required />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">
+        Confirmar y Pagar
+    </button>
+</form>
