@@ -1,353 +1,143 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Spotify.APIConsumer;
 using Spotify.Modelos;
+using System.Security.Claims;
 
 namespace Spotify.MVC.Controllers
 {
     public class PlanesController : Controller
     {
-        private const string EndPoint = "https://localhost:7028/api/Planes";
-        // GET: PlanesController - Mostrar vista de selección de planes
-        //public ActionResult Index()
-        //{
-        //    // Crear lista de planes disponibles
-        //    var planes = ObtenerPlanesDisponibles();
-        //    return View(planes);
-        //}
-        public PlanesController()
+        private readonly AppDbContext _context;
+
+        public PlanesController(AppDbContext context)
         {
-            CRUD<Plan>.EndPoint = EndPoint; // Establecemos el endpoint de la API
+            _context = context;
         }
 
-        // GET: PlanesController - Mostrar todos los planes
-        public ActionResult Index()
+        // Ver los planes disponibles
+        public IActionResult Index()
         {
-            try
-            {
-                var planes = CRUD<Plan>.GetAll();  // Obtener los planes desde la API
-                return View(planes);  // Pasar los planes a la vista
-            }
-            catch (Exception ex)
-            {
-                TempData["Error"] = "Error al cargar los planes: " + ex.Message;
-                return View();
-            }
+            var planes = _context.Planes.ToList();
+            return View(planes); // Mostramos todos los planes disponibles
         }
-        // POST: Seleccionar un plan
+
+        // Comprar un plan
+        [HttpPost]
+        public async Task<IActionResult> ComprarPlan(int planId)
+        {
+            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            var usuario = await _context.Usuarios.Include(u => u.Plan).FirstOrDefaultAsync(u => u.Id == usuarioId);
+
+            if (usuario == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+
+            var plan = await _context.Planes.FindAsync(planId);
+
+            if (plan == null)
+            {
+                // Si no existe el plan
+                return NotFound();
+            }
+
+            if (usuario.Plan != null && usuario.Plan.Id == planId)
+            {
+                // El usuario ya tiene este plan
+                return RedirectToAction("Dashboard", "Home");
+            }
+
+            // Aquí puedes verificar si el usuario tiene suficiente saldo
+            if (usuario.Saldo < plan.PrecioMensual)
+            {
+                // Si no tiene saldo suficiente
+                ViewBag.ErrorMessage = "No tienes suficiente saldo para comprar este plan.";
+                return RedirectToAction("Index", "Planes");
+            }
+
+            // Descontar el saldo
+            usuario.Saldo -= plan.PrecioMensual;
+            usuario.Plan = plan;  // Asignar el nuevo plan
+
+            _context.Usuarios.Update(usuario);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Dashboard", "Home");
+        }
+
+
+        [HttpGet]
+        public IActionResult RecargarSaldo()
+        {
+            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var usuario = _context.Usuarios
+                                  .FirstOrDefault(u => u.Id == usuarioId);
+            if (usuario == null)
+                return NotFound();
+
+            return View(usuario); // Retorna la vista de recarga, independientemente del plan
+        }
+
+        // POST: /Planes/RecargarSaldo
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SelectPlan(string planId)
+        public async Task<IActionResult> RecargarSaldo(double monto)
         {
-            try
-            {
-                // Aquí puedes procesar la selección del plan
-                // Por ejemplo, guardar en sesión, base de datos, etc.
+            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var usuario = await _context.Usuarios
+                                        .FirstOrDefaultAsync(u => u.Id == usuarioId);
+            if (usuario == null) return NotFound();
 
-                // Guardar en sesión para uso posterior
-                HttpContext.Session.SetString("SelectedPlan", planId);
+            usuario.Saldo = (usuario.Saldo ?? 0) + monto; // Sumar el monto al saldo existente
+            _context.Update(usuario);
+            await _context.SaveChangesAsync();
 
-                // Redirigir según el plan seleccionado
-                switch (planId.ToLower())
-                {
-                    case "basic":
-                        TempData["Message"] = "¡Bienvenido al plan Básico! Disfruta de música con algunas limitaciones.";
-                        break;
-                    case "premium":
-                        TempData["Message"] = "¡Excelente elección! El plan Premium te da acceso completo.";
-                        return RedirectToAction("Payment", new { planId = planId });
-                    case "family":
-                        TempData["Message"] = "¡Perfecto para toda la familia! Hasta 6 cuentas incluidas.";
-                        return RedirectToAction("Payment", new { planId = planId });
-                    case "student":
-                        TempData["Message"] = "¡Aprovecha el descuento estudiantil!";
-                        return RedirectToAction("StudentVerification", new { planId = planId });
-                    default:
-                        TempData["Error"] = "Plan no válido.";
-                        return RedirectToAction("Index");
-                }
-
-                return RedirectToAction("Confirmation", new { planId = planId });
-            }
-            catch (Exception ex)
-            {
-                TempData["Error"] = "Error al seleccionar el plan: " + ex.Message;
-                return RedirectToAction("Index");
-            }
+            ViewBag.SuccessMessage = $"Has recargado ${monto} con éxito.";
+            return RedirectToAction("Dashboard", "Home"); // Redirigir al dashboard
         }
 
-        // GET: Confirmación de selección de plan
-        public ActionResult Confirmation(string planId)
-        {
-            var plan = ObtenerPlanPorId(planId);
-            if (plan == null)
-            {
-                TempData["Error"] = "Plan no encontrado.";
-                return RedirectToAction("Index");
-            }
-
-            return View(plan);
-        }
-
-        // GET: Página de pago
-        public ActionResult Payment(string planId)
-        {
-            var plan = ObtenerPlanPorId(planId);
-            if (plan == null)
-            {
-                TempData["Error"] = "Plan no encontrado.";
-                return RedirectToAction("Index");
-            }
-
-            return View(plan);
-        }
-
-        // GET: Verificación de estudiante
-        public ActionResult StudentVerification(string planId)
-        {
-            var plan = ObtenerPlanPorId(planId);
-            if (plan == null)
-            {
-                TempData["Error"] = "Plan no encontrado.";
-                return RedirectToAction("Index");
-            }
-
-            return View(plan);
-        }
-
-        // GET: PlanesController/Details/5
-        public ActionResult Details(int id)
-        {
-            var planes = ObtenerPlanesDisponibles();
-            var plan = planes.FirstOrDefault(p => p.Id == id);
-
-            if (plan == null)
-            {
-                TempData["Error"] = "Plan no encontrado.";
-                return RedirectToAction("Index");
-            }
-
-            return View(plan);
-        }
-
-        // GET: PlanesController/Create - Solo para administradores
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: PlanesController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Plan plan)
+    public async Task<IActionResult> CambiarPlan(int nuevoPlanId)
+    {
+        var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Obtener el id del usuario logueado
+        var usuario = await _context.Usuarios.FindAsync(usuarioId); // Obtener el usuario logueado
+
+        var nuevoPlan = await _context.Planes.FindAsync(nuevoPlanId); // Obtener el nuevo plan seleccionado
+
+        if (usuario == null || nuevoPlan == null)
         {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    // Aquí agregarías la lógica para guardar en base de datos
-                    // _context.Planes.Add(plan);
-                    // _context.SaveChanges();
-
-                    TempData["Success"] = "Plan creado exitosamente.";
-                    return RedirectToAction(nameof(Index));
-                }
-
-                return View(plan);
-            }
-            catch (Exception ex)
-            {
-                TempData["Error"] = "Error al crear el plan: " + ex.Message;
-                return View(plan);
-            }
+            return NotFound();
         }
 
-        // GET: PlanesController/Edit/5
-        public ActionResult Edit(int id)
+        // Verificar si el usuario ya tiene un plan activo
+        if (usuario.Plan != null)
         {
-            var planes = ObtenerPlanesDisponibles();
-            var plan = planes.FirstOrDefault(p => p.Id == id);
-
-            if (plan == null)
-            {
-                TempData["Error"] = "Plan no encontrado.";
-                return RedirectToAction("Index");
-            }
-
-            return View(plan);
+            ViewBag.ErrorMessage = "Ya tienes un plan activo. Debes esperar a que termine la suscripción para cambiar de plan.";
+            return RedirectToAction("Dashboard", "Home");
         }
 
-        // POST: PlanesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Plan plan)
+        // Verificar si el usuario tiene suficiente saldo para comprar el nuevo plan
+        if (usuario.Saldo >= nuevoPlan.PrecioMensual)
         {
-            try
-            {
-                if (id != plan.Id)
-                {
-                    TempData["Error"] = "ID de plan no válido.";
-                    return View(plan);
-                }
+            usuario.Saldo -= nuevoPlan.PrecioMensual; // Descontar el saldo
+            usuario.Plan = nuevoPlan; // Asignar el nuevo plan
 
-                if (ModelState.IsValid)
-                {
-                    // Aquí agregarías la lógica para actualizar en base de datos
-                    // _context.Update(plan);
-                    // _context.SaveChanges();
+            _context.Update(usuario); // Actualizar el usuario con el nuevo plan
+            await _context.SaveChangesAsync(); // Guardar los cambios
 
-                    TempData["Success"] = "Plan actualizado exitosamente.";
-                    return RedirectToAction(nameof(Index));
-                }
-
-                return View(plan);
-            }
-            catch (Exception ex)
-            {
-                TempData["Error"] = "Error al actualizar el plan: " + ex.Message;
-                return View(plan);
-            }
+            ViewBag.SuccessMessage = $"¡Plan {nuevoPlan.Nombre} activado con éxito!";
+            return RedirectToAction("Dashboard", "Home");
         }
 
-        // GET: PlanesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            var planes = ObtenerPlanesDisponibles();
-            var plan = planes.FirstOrDefault(p => p.Id == id);
-
-            if (plan == null)
-            {
-                TempData["Error"] = "Plan no encontrado.";
-                return RedirectToAction("Index");
-            }
-
-            return View(plan);
-        }
-
-        // POST: PlanesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // Aquí agregarías la lógica para eliminar de base de datos
-                // var plan = _context.Planes.Find(id);
-                // if (plan != null)
-                // {
-                //     _context.Planes.Remove(plan);
-                //     _context.SaveChanges();
-                // }
-
-                TempData["Success"] = "Plan eliminado exitosamente.";
-                return RedirectToAction(nameof(Index));
-            }
-            catch (Exception ex)
-            {
-                TempData["Error"] = "Error al eliminar el plan: " + ex.Message;
-                return RedirectToAction(nameof(Index));
-            }
-        }
-
-        #region Métodos Auxiliares
-
-        /// <summary>
-        /// Obtiene la lista de planes disponibles.
-        /// En un escenario real, esto vendría de la base de datos.
-        /// </summary>
-        private List<Plan> ObtenerPlanesDisponibles()
-        {
-            return new List<Plan>
-            {
-                new Plan
-                {
-                    Id = 1,
-                    Nombre = "Básico",
-                    PrecioMensual = 0.00,
-                    MaximoUsuarios = 1,
-                    Descripcion = "Plan gratuito con acceso limitado y anuncios"
-                },
-                new Plan
-                {
-                    Id = 2,
-                    Nombre = "Premium",
-                    PrecioMensual = 9.99,
-                    MaximoUsuarios = 1,
-                    Descripcion = "Acceso completo sin anuncios, calidad HD y descargas"
-                },
-                new Plan
-                {
-                    Id = 3,
-                    Nombre = "Familiar",
-                    PrecioMensual = 14.99,
-                    MaximoUsuarios = 6,
-                    Descripcion = "Hasta 6 cuentas familiares con todas las funciones Premium"
-                },
-                new Plan
-                {
-                    Id = 4,
-                    Nombre = "Estudiante",
-                    PrecioMensual = 4.99,
-                    MaximoUsuarios = 1,
-                    Descripcion = "Descuento especial para estudiantes verificados"
-                }
-                
-                // AGREGAR MÁS PLANES AQUÍ
-                // Puedes agregar fácilmente más planes a esta lista
-                /*
-                ,
-                new Plan
-                {
-                    Id = 5,
-                    Nombre = "Empresarial",
-                    PrecioMensual = 19.99,
-                    MaximoUsuarios = 50,
-                    Descripcion = "Solución completa para empresas con hasta 50 empleados"
-                },
-                new Plan
-                {
-                    Id = 6,
-                    Nombre = "Premium Plus",
-                    PrecioMensual = 15.99,
-                    MaximoUsuarios = 1,
-                    Descripcion = "Premium con funciones adicionales y audio de alta resolución"
-                }
-                */
-            };
-        }
-
-        /// <summary>
-        /// Obtiene un plan específico por su ID de string.
-        /// </summary>
-        private Plan ObtenerPlanPorId(string planId)
-        {
-            var planes = ObtenerPlanesDisponibles();
-
-            return planId.ToLower() switch
-            {
-                "basic" => planes.FirstOrDefault(p => p.Nombre.ToLower() == "básico"),
-                "premium" => planes.FirstOrDefault(p => p.Nombre.ToLower() == "premium"),
-                "family" => planes.FirstOrDefault(p => p.Nombre.ToLower() == "familiar"),
-                "student" => planes.FirstOrDefault(p => p.Nombre.ToLower() == "estudiante"),
-                _ => null
-            };
-        }
-
-        /// <summary>
-        /// Mapea el ID de string a ID numérico.
-        /// </summary>
-        private int MapearPlanIdANumerico(string planId)
-        {
-            return planId.ToLower() switch
-            {
-                "basic" => 1,
-                "premium" => 2,
-                "family" => 3,
-                "student" => 4,
-                _ => 0
-            };
-        }
-
-        #endregion
+        // Si no tiene saldo suficiente, mostrar un mensaje de error
+        ViewBag.ErrorMessage = "No tienes suficiente saldo para cambiar de plan.";
+        return RedirectToAction("Index", "Planes");
     }
+
+
+    }
+
 }

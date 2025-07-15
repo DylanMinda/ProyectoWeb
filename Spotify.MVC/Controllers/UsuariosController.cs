@@ -146,11 +146,6 @@ namespace Spotify.MVC.Controllers
             // 5) Persiste cambios
             await _context.SaveChangesAsync();
 
-            // 6) DEBUG: recarga la entidad sin tracking y muestra el hash **después**
-            var recargado = await _context.Usuarios
-                                  .AsNoTracking()
-                                  .FirstAsync(u => u.Id == existente.Id);
-            Console.WriteLine($"[DEBUG] Después → {recargado.Contraseña}");
 
             // 7) Fuerza logout para re-loguear con la nueva clave
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

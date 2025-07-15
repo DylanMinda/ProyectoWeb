@@ -87,12 +87,14 @@ namespace Spotify.MVC.Controllers
             {
                 Nombre = usuario.Nombre,
                 Plan = usuario.Plan,
+                Saldo = usuario.Saldo ?? 0, // Asignar saldo 0 si es nulo
                 CancionUrl = cancion?.ArchivoUrl,
                 CancionId = cancion?.Id
             };
 
             return View(model);
         }
+
 
         public IActionResult DashboardArtista()
         {

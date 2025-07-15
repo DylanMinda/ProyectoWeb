@@ -18,5 +18,6 @@ namespace Spotify.Modelos
         public virtual List<Cancion>? Canciones { get; set; }
         public virtual List<Playlist>? Playlists { get; set; }
         public virtual Plan? Plan { get; set; } // Plan al que está suscrito el usuario
+        public double? Saldo { get; set; }
     }
 }

@@ -61,7 +61,23 @@ namespace Spotify.API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(cancion).State = EntityState.Modified;
+            // Verificamos que la canción existe
+            var cancionExistente = await _context.Canciones.FindAsync(id);
+            if (cancionExistente == null)
+            {
+                return NotFound();
+            }
+
+            // Si se desea actualizar la propiedad TotalReproducciones, no la actualizamos aquí, ya que se maneja automáticamente.
+            // Solo actualizamos los campos necesarios, por ejemplo, Titulo, Duracion, etc.
+
+            cancionExistente.Titulo = cancion.Titulo;
+            cancionExistente.Duracion = cancion.Duracion;
+            cancionExistente.Genero = cancion.Genero;
+            cancionExistente.ArtistaId = cancion.ArtistaId;
+            cancionExistente.AlbumId = cancion.AlbumId;
+
+            _context.Entry(cancionExistente).State = EntityState.Modified;
 
             try
             {
@@ -81,6 +97,7 @@ namespace Spotify.API.Controllers
 
             return NoContent();
         }
+
 
         // POST: api/Canciones
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -115,7 +132,7 @@ namespace Spotify.API.Controllers
         }
 
         [HttpPost("upload")]
-        public async Task<ActionResult<Cancion>> UploadCancion([FromForm] CancionSubir dto)
+        public async Task<ActionResult<Cancion>> UploadCancion([FromForm] CancionDTO dto)
         {
             // 1. Obtener/crear contenedor
             var container = _blobService.GetBlobContainerClient(_containerName);
@@ -145,8 +162,6 @@ namespace Spotify.API.Controllers
             return CreatedAtAction(nameof(GetCancion), new { id = cancion.Id }, cancion);
         }
 
-
-        // En CancionesController.cs
         [HttpPost("{id}/incrementar-reproduccion")]
         public async Task<IActionResult> IncrementarReproduccion(int id)
         {
@@ -165,7 +180,6 @@ namespace Spotify.API.Controllers
 
             return NoContent(); // Respuesta exitosa sin contenido
         }
-
 
     }
 }

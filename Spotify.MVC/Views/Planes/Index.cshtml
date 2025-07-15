@@ -162,21 +162,21 @@
     }
 }
  *@
-@model List<Spotify.Modelos.Plan> 
+@model List<Spotify.Modelos.Plan>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Planes - Spotify.MVC</title>
+    <title>Planes - Beathouse</title>
     <link rel="stylesheet" href="~/css/planes.css" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-white box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">Spotify.MVC</a>
+                <a class="navbar-brand" href="/">Beathouse</a>
             </div>
         </nav>
     </header>
@@ -185,7 +185,7 @@
         <main role="main" class="pb-3">
             <h2 class="text-center text-success">Planes Disponibles</h2>
             <div class="row">
-                @foreach (var plan in Model)  
+                @foreach (var plan in Model)
                 {
                     <div class="col-md-4">
                         <div class="card" style="width: 18rem;">
@@ -194,73 +194,24 @@
                                 <p class="card-text">@plan.Descripcion</p>
                                 <p class="card-text"><strong>Precio: </strong>$@plan.PrecioMensual</p>
                                 <p class="card-text"><strong>Usuarios permitidos: </strong>@plan.MaximoUsuarios</p>
-                                <a href="@Url.Action("Details", "Planes", new { id = plan.Id })" class="btn btn-primary">Ver Detalles</a>
+
+                                <!-- Formulario de compra -->
+                                <form method="post" action="@Url.Action("ComprarPlan", "Planes")">
+                                    <input type="hidden" name="planId" value="@plan.Id" />
+                                    <button type="submit" class="btn btn-primary">Comprar</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 }
+
             </div>
         </main>
     </div>
-    @functions {
-        List<string> ObtenerCaracteristicasPlan(string nombrePlan)
-        {
-            return nombrePlan.ToLower() switch
-            {
-                "básico" => new List<string>
-        {
-        "Acceso limitado a canciones",
-        "Anuncios entre canciones",
-        "Calidad de audio estándar",
-        "Reproducción aleatoria",
-        "Máximo 5 saltos por hora"
-        },
-                "premium" => new List<string>
-        {
-        "Acceso ilimitado a toda la música",
-        "Sin anuncios",
-        "Calidad de audio HD",
-        "Descarga para escuchar offline",
-        "Saltos ilimitados",
-        "Listas de reproducción personalizadas"
-        },
-                "familiar" => new List<string>
-        {
-        "Todas las funciones Premium",
-        "Mezcla familiar",
-        "Control parental",
-        "Perfiles individuales",
-        "Reproducción simultánea"
-        },
-                "estudiante" => new List<string>
-        {
-        "Todas las funciones Premium",
-        "Descuento especial para estudiantes",
-        "Verificación académica requerida",
-        "Acceso a contenido educativo",
-        "Podcasts académicos",
-        "Renovación anual"
-        },
-                _ => new List<string>()
-            };
-        }
-
-        string ObtenerPlanStringId(string nombrePlan)
-        {
-            return nombrePlan.ToLower() switch
-            {
-                "básico" => "basic",
-                "premium" => "premium",
-                "familiar" => "family",
-                "estudiante" => "student",
-                _ => nombrePlan.ToLower().Replace(" ", "")
-            };
-        }
-    }
 
     <footer class="footer text-muted">
         <div class="container">
-            &copy; 2025 - Spotify.MVC
+            &copy; 2025 - Beathouse
         </div>
     </footer>
 </body>

@@ -1,16 +1,11 @@
 ﻿@model IEnumerable<Spotify.Modelos.Cancion>
 
-@{
-    ViewData["Title"] = "Listado de Canciones";
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-warning">
+        @Html.Raw(ViewBag.Message)  <!-- Muestra el mensaje si se ha alcanzado el límite -->
+    </div>
 }
-
-<h2>@ViewData["Title"]</h2>
-
-<p>
-    <a asp-action="SubirCancion" class="btn btn-primary">
-        <i class="bi bi-upload"></i> Subir nueva canción
-    </a>
-</p>
 
 <table class="table table-striped align-middle">
     <thead>
@@ -18,7 +13,7 @@
             <th>Código</th>
             <th>Título</th>
             <th>Duración</th>
-            <th>Genero</th>
+            <th>Género</th>
             <th>Reproducción</th>
             <th>Reproducciones</th>
             <th>Acciones</th>
@@ -42,7 +37,6 @@
                 </td>
                 <td>@item.TotalReproducciones</td>
                 <td>
-                    @* Si tienes acciones como Detalles o Eliminar en MVC *@
                     <a asp-action="Detalles" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalles</a>
                     <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Eliminar</a>
                 </td>
@@ -51,8 +45,33 @@
     </tbody>
 </table>
 
-@section Scripts {
+@* @section Scripts {
     <script>
-       
+        document.querySelectorAll(".audio-player").forEach(audio => {
+            audio.addEventListener('play', function() {
+                const tiempoLimite = 80; // Pausa cada 30 segundos
+                const cancionId = this.getAttribute('data-id');
+                let contador = 0;
+
+                const intervalo = setInterval(() => {
+                    contador++;
+
+                    if (contador >= tiempoLimite) {
+                        this.pause();
+                        alert('¡Anuncio! Cambia de plan o espera.');
+
+                        // Llamar al backend para incrementar la reproducción
+                        fetch(`/api/Canciones/${cancionId}/incrementar-reproduccion`, { method: 'POST' })
+                            .then(response => {
+                                if (!response.ok) {
+                                    alert('Límite de reproducciones alcanzado.');
+                                }
+                            });
+
+                        clearInterval(intervalo);  // Detener el intervalo
+                    }
+                }, 1000);  // Verificar cada segundo
+            });
+        });
     </script>
-}
+} *@
