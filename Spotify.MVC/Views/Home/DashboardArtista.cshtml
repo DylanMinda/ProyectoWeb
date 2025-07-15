@@ -11,36 +11,21 @@
             <h5 class="card-title mb-0">Gestión de Musica</h5>
         </div>
         <div class="card-body">
-            <p>Sube tu propia cnacion aqui</p>
-            <a asp-controller="Canciones" asp-action="Subir" class="btn btn-outline-primary">Subir cancion</a>
+            <p>Sube tu propia canción aquí</p>
+            <a asp-controller="Canciones" asp-action="CancionSubir" class="btn btn-outline-primary">Sube tu cancion</a>
         </div>
     </div>
 </div>
 
-    <div class="col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <h4>Crea tu álbum</h4>
-            </div>
-            <div class="card-body">
-                <form method="post" asp-action="CrearAlbum">
-                    <div class="form-group">
-                        <label for="albumTitulo">Título del Álbum</label>
-                        <input type="text" class="form-control" id="albumTitulo" name="albumTitulo" required placeholder="Introduce el título del álbum">
-                    </div>
-                    <div class="form-group">
-                        <label for="portadaAlbum">Sube la portada del álbum</label>
-                        <input type="file" class="form-control" id="portadaAlbum" name="portadaAlbum" accept="image/*" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="descripcionAlbum">Descripción del Álbum</label>
-                        <textarea class="form-control" id="descripcionAlbum" name="descripcionAlbum" rows="3" placeholder="Escribe una descripción para el álbum (opcional)"></textarea>
-                    </div>
-
-                    <button type="button" class="btn btn-primary mt-3" onclick="location.href='@Url.Action("Create", "Albums")'">Crear Álbum</button>
-
-                </form>
-            </div>
+<!-- Gestión de Musicas -->
+<div class="col-md-4">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Gestión de Albums</h5>
+        </div>
+        <div class="card-body">
+            <p>Crea tu propio album</p>
+            <a asp-controller="Albums" asp-action="Create" class="btn btn-outline-primary">Crea tu album</a>
         </div>
     </div>
 </div>

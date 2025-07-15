@@ -49,6 +49,12 @@ namespace Spotify.MVC.Controllers
                 new Claim("TipoUsuario", usuario.TipoUsuario)
             };
 
+            // Solo agrega el claim ArtistaId si el usuario es artista
+            if (usuario.TipoUsuario == "artista")
+            {
+                claims.Add(new Claim("ArtistaId", usuario.Id.ToString()));
+            }
+
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(identity);
 

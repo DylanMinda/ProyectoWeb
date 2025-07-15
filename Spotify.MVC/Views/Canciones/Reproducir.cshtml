@@ -1,0 +1,9 @@
+﻿@model Spotify.Modelos.Cancion
+
+<h2>@Model.Titulo</h2>
+<p>@Model.Genero - @Model.Duracion</p>
+
+<audio controls>
+    <source src="@Url.Action("ReproducirAudio", "Canciones", new { cancionId = Model.Id })" type="audio/mp3">
+    Tu navegador no soporta el elemento de audio.
+</audio>

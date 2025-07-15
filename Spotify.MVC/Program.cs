@@ -10,6 +10,8 @@ CRUD<Cancion>.EndPoint = "https://localhost:7028/api/Canciones";
 CRUD<Usuario>.EndPoint = "https://localhost:7028/api/Usuarios";
 CRUD<Plan>.EndPoint = "https://localhost:7028/api/Planes";
 CRUD<Playlist>.EndPoint = "https://localhost:7028/api/Playlists";
+CRUD<Album>.EndPoint = "https://localhost:7028/api/Albums";
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,6 +68,7 @@ using (var scope = app.Services.CreateScope())
         ctx.SaveChanges();
     }
 }
+
 
 // Pipeline HTTP
 if (!app.Environment.IsDevelopment())
