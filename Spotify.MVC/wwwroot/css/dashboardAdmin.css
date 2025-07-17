@@ -1,0 +1,215 @@
+﻿:root {
+    --eva-purple: #6F2DA8;
+    --eva-green: #8CE70C;
+    --eva-black: #1C1C1C;
+    --eva-steel: #6D6E71;
+    --eva-orange: #FBAF00;
+}
+
+body {
+    background: linear-gradient(135deg, var(--eva-black) 0%, #2a2a2a 100%);
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.welcome-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(45deg, var(--eva-purple), #8a3cb8);
+    border-radius: 15px;
+    border: 2px solid var(--eva-green);
+    box-shadow: 0 0 30px rgba(140, 231, 12, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+    .welcome-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(140, 231, 12, 0.1), transparent);
+        animation: scanline 3s linear infinite;
+    }
+
+@keyframes scanline {
+    0% {
+        transform: translateX(-100%) translateY(-100%);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%);
+    }
+}
+
+.welcome-header h2 {
+    font-size: 2.5rem;
+    margin: 0;
+    text-shadow: 0 0 20px var(--eva-green);
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-header small {
+    color: var(--eva-orange);
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px var(--eva-orange);
+}
+
+.admin-card {
+    background: linear-gradient(145deg, var(--eva-steel), #5a5b5e);
+    border: 2px solid var(--eva-purple);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+    .admin-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(111, 45, 168, 0.4);
+        border-color: var(--eva-green);
+    }
+
+        .admin-card:hover::before {
+            opacity: 1;
+        }
+
+    .admin-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(140, 231, 12, 0.1), transparent);
+        opacity: 0;
+        transition: all 0.5s ease;
+        animation: shimmer 2s infinite;
+    }
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.admin-card-header {
+    background: linear-gradient(45deg, var(--eva-purple), #8a3cb8);
+    color: white;
+    padding: 1rem;
+    border-bottom: 2px solid var(--eva-green);
+    position: relative;
+    z-index: 1;
+}
+
+    .admin-card-header h5 {
+        margin: 0;
+        font-size: 1.3rem;
+        text-shadow: 0 0 10px rgba(140, 231, 12, 0.5);
+    }
+
+    .admin-card-header i {
+        color: var(--eva-orange);
+        margin-right: 0.5rem;
+        font-size: 1.4rem;
+    }
+
+.admin-card-body {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+    .admin-card-body p {
+        color: #e0e0e0;
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+    }
+
+.eva-btn {
+    background: linear-gradient(45deg, var(--eva-green), #a8f53c);
+    color: var(--eva-black);
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(140, 231, 12, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+    .eva-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(140, 231, 12, 0.5);
+        color: var(--eva-black);
+    }
+
+    .eva-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .eva-btn:hover::before {
+        left: 100%;
+    }
+
+.row {
+    gap: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .welcome-header h2 {
+        font-size: 2rem;
+    }
+
+    .welcome-header small {
+        font-size: 1rem;
+    }
+}
+
+/* Efecto de energía en los bordes */
+.energy-border {
+    position: relative;
+}
+
+    .energy-border::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, var(--eva-green), var(--eva-purple), var(--eva-green));
+        border-radius: 17px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .energy-border:hover::after {
+        opacity: 1;
+    }

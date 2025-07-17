@@ -8,6 +8,7 @@ using Spotify.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Spotify.API.Controllers
@@ -165,21 +166,49 @@ namespace Spotify.API.Controllers
         [HttpPost("{id}/incrementar-reproduccion")]
         public async Task<IActionResult> IncrementarReproduccion(int id)
         {
+            // Obtener el usuario logueado
+            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Obtener el usuario logueado
+            var usuario = await _context.Usuarios.Include(u => u.Plan).FirstOrDefaultAsync(u => u.Id == usuarioId);
+
+            if (usuario == null)
+            {
+                return Unauthorized(); // Si no está logueado
+            }
+
             var cancion = await _context.Canciones.FindAsync(id);
             if (cancion == null)
             {
                 return NotFound();
             }
 
-            // Incrementamos la cantidad de reproducciones
-            cancion.TotalReproducciones++;
+            // Si el usuario tiene el plan Free, aplicar las restricciones
+            if (usuario.Plan.Nombre == "Free")
+            {
+                if (cancion.TotalReproducciones >= 5) // Límite de 5 reproducciones
+                {
+                    // Mostrar el anuncio
+                    return BadRequest("Límite de reproducciones alcanzado. Cambia de plan o espera.");
+                }
 
-            // Guardamos los cambios en la base de datos
+                // Si no se alcanzó el límite, incrementar la reproducción
+                cancion.TotalReproducciones++;
+
+                // Guardamos los cambios
+                _context.Canciones.Update(cancion);
+                await _context.SaveChangesAsync();
+
+                // Respuesta con anuncio
+                return Ok("Reproducción exitosa, mostrando anuncio...");
+            }
+
+            // Si es Premium, simplemente incrementa las reproducciones sin restricciones
+            cancion.TotalReproducciones++;
             _context.Canciones.Update(cancion);
             await _context.SaveChangesAsync();
 
-            return NoContent(); // Respuesta exitosa sin contenido
+            return Ok("Reproducción exitosa sin restricciones.");
         }
+
 
     }
 }

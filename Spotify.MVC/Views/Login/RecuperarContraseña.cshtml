@@ -1,31 +1,38 @@
-﻿ ﻿@{
-ViewData["Title"] = "Recuperar Contraseña";
-}
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="~/css/recuperar.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="eva-accent"></div>
+        <div class="tech-lines"></div>
 
-<h1>Recuperar Contraseña</h1>
-<link rel="stylesheet" href="~/css/logTodo.css" />
-<p>Ingrese su correo electrónico para recuperar su contraseña:</p>
+        <h1>Recuperar Contraseña</h1>
 
-<form method="post">
-    <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input type="email" class="form-control" id="email" name="email" required placeholder="Ingrese su correo electrónico">
+        <p>Ingrese su correo electrónico para recuperar su contraseña:</p>
+
+        <form method="post">
+            <div class="form-group">
+                <div class="recovery-icon"></div>
+                <label for="email">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" name="email" required placeholder="Ingrese su correo electrónico">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+
+            <!-- Simulación de mensajes de error y éxito -->
+            <div class="alert alert-danger mt-2" style="display: none;">
+                Mensaje de error aquí
+            </div>
+
+            <div class="alert alert-success mt-2" style="display: none;">
+                Mensaje de éxito aquí
+            </div>
+        </form>
     </div>
-
-    <button type="submit" class="btn btn-primary">Enviar solicitud</button>
-
-    @if (ViewBag.ErrorMessage != null)
-    {
-        <div class="alert alert-danger mt-2">
-            @ViewBag.ErrorMessage
-        </div>
-    }
-
-    @if (ViewBag.SuccessMessage != null)
-    {
-        <div class="alert alert-success mt-2">
-            @ViewBag.SuccessMessage
-        </div>
-    }
-</form> 
-
+</body>
+</html>

@@ -1,4 +1,23 @@
-﻿@model IEnumerable<Spotify.Modelos.Cancion>
+﻿@using System.Security.Claims
+@using Spotify.MVC.ViewModels
+
+@{
+    ViewData["Title"] = "Tus Canciones";
+}
+
+<h2 class="text-center text-success">Tu Biblioteca de Canciones</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+
+@model IEnumerable<Spotify.Modelos.Cancion>
 
 @if (ViewBag.Message != null)
 {
@@ -15,8 +34,6 @@
             <th>Duración</th>
             <th>Género</th>
             <th>Reproducción</th>
-            <th>Reproducciones</th>
-            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -35,43 +52,45 @@
                         <code>audio</code>.
                     </audio>
                 </td>
-                <td>@item.TotalReproducciones</td>
-                <td>
-                    <a asp-action="Detalles" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalles</a>
-                    <a asp-action="Eliminar" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Eliminar</a>
-                </td>
             </tr>
         }
     </tbody>
 </table>
 
-@* @section Scripts {
+@section Scripts {
     <script>
-        document.querySelectorAll(".audio-player").forEach(audio => {
-            audio.addEventListener('play', function() {
-                const tiempoLimite = 80; // Pausa cada 30 segundos
-                const cancionId = this.getAttribute('data-id');
-                let contador = 0;
+        // Obtener el plan del usuario desde el ViewBag
+        var userPlan = "@ViewBag.Plan"; // Se espera que ViewBag.Plan esté disponible en el controlador.
 
-                const intervalo = setInterval(() => {
-                    contador++;
+        // Intervalos de pausa
+        var pauseIntervals = {
+            'Free': 30000,  // 30 segundos para los usuarios Free
+            'Estudiantil': 15000,  // 15 segundos para los usuarios Estudiantiles
+            'Premium': 0, // Sin pausa para los usuarios Premium
+            'Empresarial': 0 // Solo 1 pausa para los usuarios Empresariales
+        };
 
-                    if (contador >= tiempoLimite) {
-                        this.pause();
-                        alert('¡Anuncio! Cambia de plan o espera.');
+        // Reproducir y pausar según el plan
+        document.querySelectorAll('.audio-player').forEach(function(player) {
+            var plan = userPlan;
+            var interval;
 
-                        // Llamar al backend para incrementar la reproducción
-                        fetch(`/api/Canciones/${cancionId}/incrementar-reproduccion`, { method: 'POST' })
-                            .then(response => {
-                                if (!response.ok) {
-                                    alert('Límite de reproducciones alcanzado.');
-                                }
-                            });
-
-                        clearInterval(intervalo);  // Detener el intervalo
+            // Función para pausar la canción en el intervalo adecuado
+            function pauseSong() {
+                if (plan === 'Free' || plan === 'Estudiantil') {
+                    // Pausar solo si la canción está reproduciéndose
+                    if (!player.paused) {
+                        player.pause();
                     }
-                }, 1000);  // Verificar cada segundo
-            });
+                }
+            }
+
+            // Si el plan es Free o Estudiantil, aplicar pausa a intervalos
+            if (plan === 'Free' || plan === 'Estudiantil') {
+                interval = setInterval(function() {
+                    pauseSong();
+                }, pauseIntervals[plan]);
+            }
         });
     </script>
-} *@
+}

@@ -138,6 +138,17 @@
                     @Model.Nombre.Substring(0, 1).ToUpper()
                 </button>
             </div>
+
+            @if (Model.Plan != null)
+            {
+                <p>Tu plan actual es: @Model.Plan.Nombre</p>
+                <p>Precio del plan: $@Model.Plan.PrecioMensual</p>
+            }
+            else
+            {
+                <p>No tienes ningún plan asignado.</p>
+            }
+
             <div class="content-wrapper">
                 <!-- Saldo y Recarga -->
                 <div class="content-section">

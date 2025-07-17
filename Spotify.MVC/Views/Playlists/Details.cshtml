@@ -23,7 +23,6 @@
             </span>
         </div>
     </div>
-
     <div class="beathouse-card">
         <div class="songs-section">
             <h3 class="section-title">
@@ -31,17 +30,19 @@
                 LISTA DE REPRODUCCIÓN
                 <div class="title-line"></div>
             </h3>
-
             @if (Model.DetallesPlaylists?.Any() == true)
             {
                 <div class="songs-list">
                     @foreach (var d in Model.DetallesPlaylists)
                     {
-                        <div class="song-track">
+                        <a asp-controller="Canciones" asp-action="Player" asp-route-id="@d.Cancion.Id" class="song-track clickable">
                             <div class="track-number">@(Model.DetallesPlaylists.ToList().IndexOf(d) + 1)</div>
                             <div class="track-info">
                                 <span class="track-title">@d.Cancion.Titulo</span>
                                 <span class="track-duration">@d.Cancion.Duracion.ToString(@"mm\:ss")</span>
+                            </div>
+                            <div class="track-actions">
+                                <i class="fas fa-play play-icon"></i>
                             </div>
                             <div class="track-visualizer">
                                 <div class="bar"></div>
@@ -49,7 +50,7 @@
                                 <div class="bar"></div>
                                 <div class="bar"></div>
                             </div>
-                        </div>
+                        </a>
                     }
                 </div>
             }
@@ -62,7 +63,6 @@
                 </div>
             }
         </div>
-
         <div class="button-group">
             <a asp-action="Index" class="btn btn-secondary-custom">
                 <i class="fas fa-arrow-left"></i>

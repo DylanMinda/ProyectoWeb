@@ -1,0 +1,128 @@
+﻿@model Spotify.Modelos.Cancion
+@{
+    ViewData["Title"] = "Reproductor";
+}
+<link rel="stylesheet" href="~/css/songPlayer.css">
+
+<div class="player-container">
+    <div class="player-header">
+        <div class="header-glow"></div>
+        <h1 class="player-title">
+            <i class="fas fa-play-circle"></i>
+            <span class="highlight">REPRODUCTOR</span>
+        </h1>
+        <div class="song-meta">
+            <span class="meta-item">
+                <i class="fas fa-music"></i>
+                Ahora reproduciendo
+            </span>
+        </div>
+    </div>
+
+    <div class="player-card">
+        <div class="album-art-section">
+            <div class="album-art-container">
+                <div class="album-art">
+                    <div class="vinyl-record">
+                        <div class="vinyl-center"></div>
+                        <div class="vinyl-line"></div>
+                        <div class="vinyl-line"></div>
+                        <div class="vinyl-line"></div>
+                    </div>
+                </div>
+                <div class="art-glow"></div>
+            </div>
+        </div>
+
+        <div class="song-info-section">
+            <div class="song-details">
+                <h2 class="song-title">@Model.Titulo</h2>
+                <h3 class="song-artist">@Model.ArtistaId</h3>
+                <div class="song-stats">
+                    <span class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        @Model.Duracion.ToString(@"mm\:ss")
+                    </span>
+                </div>
+            </div>
+            <div class="song-player">
+                <audio controls class="audio-player" autoplay>
+                    <source src="@Model.ArchivoUrl" type="audio/mp3" />
+                    Tu navegador no soporta el elemento
+                    <code>audio</code>.
+                </audio>
+            </div>
+
+            <div class="player-controls">
+                <div class="control-buttons">
+                    <button class="control-btn" id="prevBtn">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button class="control-btn play-btn" id="playBtn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="control-btn" id="nextBtn">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                        <div class="progress-handle"></div>
+                    </div>
+                    <div class="time-display">
+                        <span class="current-time">0:00</span>
+                        <span class="total-time">@Model.Duracion.ToString(@"mm\:ss")</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualizer-section">
+                <div class="audio-visualizer">
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                    <div class="visualizer-bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="additional-info">
+        <div class="info-card">
+            <h4><i class="fas fa-info-circle"></i> Información de la Canción</h4>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Título:</label>
+                    <span>@Model.Titulo</span>
+                </div>
+                <div class="info-item">
+                    <label>Artista:</label>
+                    <span>@Model.ArtistaId</span>
+                </div>
+                <div class="info-item">
+                    <label>Duración:</label>
+                    <span>@Model.Duracion.ToString(@"mm\:ss")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <a href="javascript:history.back()" class="btn btn-secondary-custom">
+            <i class="fas fa-arrow-left"></i>
+            VOLVER
+        </a>
+        <a asp-controller="Home" asp-action="Dashboard" class="btn btn-primary-custom">
+            <i class="fas fa-home"></i>
+            INICIO
+        </a>
+    </div>
+</div>

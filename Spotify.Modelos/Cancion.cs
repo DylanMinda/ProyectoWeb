@@ -14,8 +14,10 @@ namespace Spotify.Modelos
         public TimeSpan Duracion { get; set; }
         public string Genero { get; set; }
         public string ArchivoUrl { get; set; } = null!;
+        [NotMapped]
         public int TotalReproducciones { get; set; }
-        public DateTime? FechaDeReproduccionPermitida { get; set; }
+        [NotMapped]
+        public int LimiteReproducciones { get; set; } = 5;
         public int ArtistaId { get; set; } // ID del artista que interpreta la canción
         public int AlbumId { get; set; } // ID del álbum al que pertenece la canción
         public virtual Album? Album { get; set; }

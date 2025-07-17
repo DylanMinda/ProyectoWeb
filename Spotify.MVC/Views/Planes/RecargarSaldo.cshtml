@@ -4,59 +4,85 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Recargar Saldo</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Spotify.MVC.styles.css" asp-append-version="true" />
-    <style>
-        body {
-            background-color: #1C1C1C; /* Negro Profundo */
-            color: white;
-        }
-
-        .btn-recargar {
-            background-color: #8CE70C; /* Verde Neón */
-            color: #1C1C1C; /* Negro Profundo */
-        }
-
-            .btn-recargar:hover {
-                background-color: #6F2DA8; /* Púrpura Principal */
-            }
-
-        .form-container {
-            margin-top: 50px;
-            padding: 20px;
-            background-color: #6D6E71; /* Gris Acero */
-            border-radius: 10px;
-        }
-    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/recargarSaldo.css">
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Beathouse</a>
             </div>
         </nav>
     </header>
+    <div class="container">
+        <main role="main" class="pg-3">
+            <div class="form-container energy-pulse">
+                <div class="mb-3">
+                    <label for="numeroTarjeta" class="form-label">
+                        <i class="fas fa-wallet" style="color: var(--eva-orange); margin-right: 0.5rem;"></i>
+                        Número de tarjeta de débito/crédito
+                    </label>
+                    <input type="text"
+                           class="form-control"
+                           id="numeroTarjeta"
+                           name="numeroTarjeta"
+                           required
+                           placeholder="Ingresa el número de tarjeta"
+                           pattern="^(4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})$"
+                           maxlength="16"
+                           title="El número debe comenzar con 4 (Visa) o 5 (MasterCard) y tener entre 13 y 16 dígitos.">
+                    <small id="tarjetaError" class="text-danger"></small> <!-- Error message -->
+                </div>
+            </div>
+        </main>
+    </div>
 
     <div class="container">
+        <main role="main" class="pg-3">
+            <div class="form-container energy-pulse">
+                <div class="mb-3">
+                    <label for="titularTarjeta" class="form-label">
+                        <i class="fas fa-wallet" style="color: var(--eva-orange); margin-right: 0.5rem;"></i>
+                        Titular de la tarjeta
+                    </label>
+                    <input type="text" class="form-control" id="titularTarjeta" name="titularTarjeta" required placeholder="Ingresa el titular de la tarjeta">
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="container">
         <main role="main" class="pb-3">
-            <h2 class="text-center text-success">Recargar Saldo</h2>
-            <div class="form-container">
+            <h2 class="main-title">Cantidad a recargar</h2>
+            <div class="form-container energy-pulse">
                 <form method="post" asp-action="RecargarSaldo">
                     <div class="mb-3">
-                        <label for="monto" class="form-label">Monto a recargar</label>
-                        <input type="number" class="form-control" id="monto" name="monto" required min="1" step="any">
+                        <label for="monto" class="form-label">
+                            <i class="fas fa-wallet" style="color: var(--eva-orange); margin-right: 0.5rem;"></i>
+                            Monto a recargar
+                        </label>
+                        <input type="number" class="form-control" id="monto" name="monto" required min="1" step="any" placeholder="Ingresa el monto...">
                     </div>
-                    <button type="submit" class="btn btn-recargar">Recargar</button>
+                    <button type="submit" class="btn btn-recargar">
+                        <i class="fas fa-bolt" style="margin-right: 0.5rem;"></i>
+                        Recargar
+                    </button>
                 </form>
+
                 @if (ViewBag.SuccessMessage != null)
                 {
-                    <div class="alert alert-success mt-3">@ViewBag.SuccessMessage</div>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i>
+                        @ViewBag.SuccessMessage
+                    </div>
                 }
                 @if (ViewBag.ErrorMessage != null)
                 {
-                    <div class="alert alert-danger mt-3">@ViewBag.ErrorMessage</div>
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle" style="margin-right: 0.5rem;"></i>
+                        @ViewBag.ErrorMessage
+                    </div>
                 }
             </div>
         </main>
@@ -64,9 +90,10 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - Beathouse
+            Beathouse - Sistema de Gestión Musical
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

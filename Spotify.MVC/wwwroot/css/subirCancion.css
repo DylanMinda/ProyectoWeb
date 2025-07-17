@@ -1,0 +1,390 @@
+﻿/* Paleta de colores EVA-01 */
+:root {
+    --eva-purple: #6F2DA8;
+    --eva-green: #8CE70C;
+    --eva-black: #1C1C1C;
+    --eva-gray: #6D6E71;
+    --eva-orange: #FBAF00;
+    --eva-purple-light: #8A4CC0;
+    --eva-purple-dark: #5A2487;
+    --eva-green-light: #A3F21A;
+    --eva-green-dark: #7BC609;
+}
+
+/* Aplicar estilos solo a esta página */
+.upload-page {
+    background: var(--eva-black);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+/* Contenedor principal */
+.upload-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--eva-black) 0%, #2a2a2a 100%);
+    min-height: 100vh;
+}
+
+/* Header de la página */
+.upload-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+    .upload-header::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--eva-purple), var(--eva-green));
+        border-radius: 2px;
+    }
+
+.upload-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--eva-green);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px var(--eva-green);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+    .upload-title i {
+        margin-right: 1rem;
+        color: var(--eva-purple);
+    }
+
+.upload-subtitle {
+    font-size: 1.2rem;
+    color: var(--eva-gray);
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* Contenedor del formulario */
+.upload-form-container {
+    background: rgba(109, 110, 113, 0.1);
+    border: 2px solid var(--eva-purple);
+    border-radius: 15px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 8px 32px rgba(111, 45, 168, 0.3);
+    position: relative;
+}
+
+    .upload-form-container::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, var(--eva-purple), var(--eva-green), var(--eva-purple));
+        border-radius: 15px;
+        z-index: -1;
+        opacity: 0.3;
+    }
+
+/* Grid del formulario */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Grupos de formulario */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--eva-green) !important;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .form-label i {
+        color: var(--eva-orange);
+        font-size: 1rem;
+    }
+
+/* Inputs del formulario */
+.form-control {
+    padding: 0.75rem 1rem !important;
+    border: 2px solid var(--eva-gray) !important;
+    border-radius: 8px !important;
+    background: rgba(28, 28, 28, 0.8) !important;
+    color: white !important;
+    font-size: 1rem !important;
+    transition: all 0.3s ease !important;
+}
+
+    .form-control:focus {
+        border-color: var(--eva-green) !important;
+        box-shadow: 0 0 0 3px rgba(140, 231, 12, 0.2) !important;
+        background: rgba(28, 28, 28, 0.95) !important;
+    }
+
+    .form-control::placeholder {
+        color: var(--eva-gray) !important;
+        opacity: 0.8 !important;
+    }
+
+    .form-control option {
+        background: var(--eva-black) !important;
+        color: white !important;
+        padding: 0.5rem !important;
+    }
+
+/* Grupo de subida de archivo */
+.file-upload-group {
+    grid-column: 1 / -1;
+}
+
+.file-upload-container {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.file-input-wrapper {
+    position: relative;
+    display: block;
+}
+
+.file-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border: 3px dashed var(--eva-purple);
+    border-radius: 12px;
+    background: rgba(111, 45, 168, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+    .file-upload-label:hover {
+        border-color: var(--eva-green);
+        background: rgba(140, 231, 12, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .file-upload-label i {
+        font-size: 2.5rem;
+        color: var(--eva-green);
+        margin-bottom: 1rem;
+    }
+
+.file-upload-text {
+    font-size: 1.2rem;
+    color: var(--eva-green);
+    font-weight: 600;
+}
+
+/* Información del archivo */
+.file-info {
+    margin-top: 1rem;
+}
+
+.file-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(140, 231, 12, 0.1);
+    border: 1px solid var(--eva-green);
+    border-radius: 8px;
+}
+
+    .file-details i {
+        color: var(--eva-green);
+        font-size: 1.5rem;
+    }
+
+.file-name {
+    color: white;
+    font-weight: 600;
+    flex: 1;
+}
+
+.file-size {
+    color: var(--eva-gray);
+    font-size: 0.9rem;
+}
+
+/* Errores de validación */
+.text-danger {
+    color: #ff4757 !important;
+    font-size: 0.875rem !important;
+    margin-top: 0.25rem !important;
+    display: block !important;
+}
+
+/* Acciones del formulario */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid var(--eva-gray);
+}
+
+/* Botones */
+.btn {
+    padding: 0.75rem 1.5rem !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    text-decoration: none !important;
+    min-width: 120px !important;
+    justify-content: center !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--eva-purple), var(--eva-purple-light)) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(111, 45, 168, 0.4) !important;
+}
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, var(--eva-purple-light), var(--eva-purple)) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(111, 45, 168, 0.6) !important;
+    }
+
+.btn-secondary {
+    background: transparent !important;
+    color: var(--eva-gray) !important;
+    border: 2px solid var(--eva-gray) !important;
+}
+
+    .btn-secondary:hover {
+        background: var(--eva-gray) !important;
+        color: white !important;
+        transform: translateY(-2px) !important;
+    }
+
+/* Información adicional */
+.upload-info {
+    margin-top: 2rem;
+}
+
+.info-card {
+    background: rgba(109, 110, 113, 0.1);
+    border: 1px solid var(--eva-gray);
+    border-radius: 12px;
+    padding: 1.5rem;
+    color: white;
+}
+
+    .info-card h3 {
+        color: var(--eva-orange);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .info-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .info-card li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(109, 110, 113, 0.3);
+        position: relative;
+        padding-left: 1.5rem;
+    }
+
+        .info-card li:last-child {
+            border-bottom: none;
+        }
+
+        .info-card li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--eva-green);
+            font-size: 0.8rem;
+        }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .upload-container {
+        padding: 1rem;
+    }
+
+    .upload-title {
+        font-size: 2rem;
+    }
+
+    .upload-form-container {
+        padding: 1.5rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100% !important;
+    }
+}
+
+/* Animaciones */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.upload-form-container:hover {
+    animation: pulse 2s infinite;
+}
+
+/* Efectos de neón */
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px var(--eva-green);
+    }
+
+    to {
+        text-shadow: 0 0 30px var(--eva-green), 0 0 40px var(--eva-green);
+    }
+}

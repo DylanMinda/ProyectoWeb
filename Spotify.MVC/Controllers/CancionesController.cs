@@ -11,24 +11,35 @@ namespace Spotify.MVC.Controllers
     public class CancionesController : Controller
     {
         private readonly AppDbContext _context;
+        public CancionesController(AppDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             var lista = CRUD<Cancion>.GetAll();
-            List<string> mensajes = new List<string>();
-
-            // Aquí verificamos si alguna canción ha alcanzado el límite de reproducciones
-            foreach (var cancion in lista)
-            {
-            }
-
-            if (mensajes.Count > 0)
-            {
-                ViewBag.Message = string.Join("<br />", mensajes);  // Muestra todos los mensajes de anuncio
-            }
-
             return View(lista);
         }
 
+        // GET: Cancion/Player/5
+        public async Task<IActionResult> Player(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound("ID de canción no proporcionado");
+            }
+
+            var cancion = await _context.Canciones
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (cancion == null)
+            {
+                return NotFound($"No se encontró la canción con ID: {id}");
+            }
+
+            return View(cancion);
+        }
 
         [HttpGet]
         public IActionResult Subir()

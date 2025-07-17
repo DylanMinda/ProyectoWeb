@@ -2,37 +2,49 @@
     ViewData["Title"] = "Dashboard Artista";
 }
 
-<h2>Bienvenido al Dashboard, @User.Identity.Name</h2>
+<!-- Font Awesome para los iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="~/css/dashboardArtista.css">
+<div class="dashboard-page">
+    <div class="dashboard-container">
+        <h2 class="dashboard-title">Bienvenido al Dashboard, @User.Identity.Name</h2>
 
-<!-- Gestión de Musicas -->
-<div class="col-md-4">
-    <div class="card shadow-sm">
-        <div class="card-header">
-            <h5 class="card-title mb-0">Gestión de Musica</h5>
+        <div class="row">
+            <!-- Gestión de Musicas -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Gestión de Música</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Sube tu propia canción aquí</p>
+                        <a asp-controller="Canciones" asp-action="Subir" class="btn btn-outline-primary">
+                            <i class="fas fa-upload"></i>
+                            Sube tu canción
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gestión de Albums -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Gestión de Álbumes</h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Crea tu propio álbum</p>
+                        <a asp-controller="Albums" asp-action="Create" class="btn btn-outline-primary">
+                            <i class="fas fa-plus"></i>
+                            Crea tu álbum
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <p>Sube tu propia canción aquí</p>
-            <a asp-controller="Canciones" asp-action="Subir" class="btn btn-outline-primary">Sube tu cancion</a>
+
+        <div class="mt-4">
+            <h5 class="section-title">Gracias por ser parte del Equipo BeatHouse</h5>
         </div>
     </div>
 </div>
-
-<!-- Gestión de Musicas -->
-<div class="col-md-4">
-    <div class="card shadow-sm">
-        <div class="card-header">
-            <h5 class="card-title mb-0">Gestión de Albums</h5>
-        </div>
-        <div class="card-body">
-            <p>Crea tu propio album</p>
-            <a asp-controller="Albums" asp-action="Create" class="btn btn-outline-primary">Crea tu album</a>
-        </div>
-    </div>
-</div>
-
-<div class="mt-4">
-    <h5>Mis Álbumes y Canciones</h5>
-    <p>Aquí podrás ver todos los álbumes y canciones que has subido.</p>
-    <!-- Aquí se pueden listar las canciones y álbumes subidos del artista -->
-</div>
-

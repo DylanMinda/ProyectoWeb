@@ -1,59 +1,89 @@
-﻿@{
-    ViewData["Title"] = "Dashboard Admin";
-}
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/dashboardAdmin.css">
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-header">
+            <h2>
+                <i class="fas fa-robot" style="color: var(--eva-orange); margin-right: 1rem;"></i>
+                Bienvenido, @User.Identity.Name
+                <small>(Administrador)</small>
+            </h2>
+        </div>
 
-<h2>Bienvenido, @User.Identity.Name <small>(Administrador)</small></h2>
+        <div class="row">
+            <!-- Gestionar Usuarios -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="admin-card energy-border">
+                    <div class="admin-card-header">
+                        <h5>
+                            <i class="fas fa-users"></i>
+                            Gestión de Usuarios
+                        </h5>
+                    </div>
+                    <div class="admin-card-body">
+                        <p>Ver, editar roles o eliminar cuentas de usuarios del sistema.</p>
 
-<div class="row gy-4">
-    <!-- Gestionar Usuarios -->
-    <div class="col-md-4">
-        <div class="card shadow-sm">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Gestión de Usuarios</h5>
+                        <a asp-controller="Usuarios" asp-action="Index" class="eva-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            Usuarios
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <p>Ver, editar roles o eliminar cuentas de usuarios.</p>
-                <a asp-controller="Usuarios" asp-action="Index" class="btn btn-outline-primary">Ir a Usuarios</a>
+
+            <!-- Gestión de Canciones -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="admin-card energy-border">
+                    <div class="admin-card-header">
+                        <h5>
+                            <i class="fas fa-music"></i>
+                            Gestión de Canciones
+                        </h5>
+                    </div>
+                    <div class="admin-card-body">
+                        <p>Ver, editar o eliminar canciones de la biblioteca musical.</p>
+                        <a asp-controller="Canciones" asp-action="Index" class="eva-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            Canciones
+                        </a>
+                    </div>
+                </div>
             </div>
+
+            <!-- Gestión de Planes -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="admin-card energy-border">
+                    <div class="admin-card-header">
+                        <h5>
+                            <i class="fas fa-star"></i>
+                            Gestión de Planes
+                        </h5>
+                    </div>
+                    <div class="admin-card-body">
+                        <p>Ver, editar o eliminar planes de suscripción disponibles.</p>
+                        <a asp-controller="Planes" asp-action="Index" class="eva-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            Planes
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <a asp-controller="Home" asp-action="Index" class="eva-btn">
+                <i class="fas fa-arrow-right"></i>
+                LogOut
+            </a>
         </div>
     </div>
 
-    <!-- Gestión de Canciones -->
-    <div class="col-md-4">
-        <div class="card shadow-sm">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Gestión de Canciones</h5>
-            </div>
-            <div class="card-body">
-                <p>Ver, editar o eliminar canciones.</p>
-                <a asp-controller="Canciones" asp-action="Index" class="btn btn-outline-primary">Ir a Canciones</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Gestión de Planes -->
-    <div class="col-md-4">
-        <div class="card shadow-sm">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Gestión de Planes</h5>
-            </div>
-            <div class="card-body">
-                <p>Ver, editar o eliminar planes.</p>
-                <a asp-controller="Planes" asp-action="Index" class="btn btn-outline-primary">Ir a Planes</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Gestión de Albums -->
-    <div class="col-md-4">
-        <div class="card shadow-sm">
-            <div class="card-header">
-                <h5 class="card-title mb-0">Gestión de Albums</h5>
-            </div>
-            <div class="card-body">
-                <p>Ver, editar o eliminar planes.</p>
-                <a asp-controller="Albums" asp-action="Index" class="btn btn-outline-primary">Ir a Albums</a>
-            </div>
-        </div>
-    </div>
-</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
