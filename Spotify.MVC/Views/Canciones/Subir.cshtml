@@ -31,11 +31,30 @@
                     <!-- Género -->
                     <div class="form-group">
                         <label asp-for="Genero" class="form-label">
-                            <i class="fas fa-tags"></i>
+                            <i class="fas fa-heading"></i>
                             Género Musical
+                            <span class="required-indicator">*</span>
                         </label>
-                        <input asp-for="Genero" class="form-control" placeholder="Ingresa el género..." />
-                        <span asp-validation-for="Genero" class="text-danger"></span>
+                        <select asp-for="Genero" class="form-input">
+                            <option value="">Selecciona un género</option>
+                            <option value="Rock">🎸 Rock</option>
+                            <option value="Pop">🎤 Pop</option>
+                            <option value="Hip Hop">🎵 Hip Hop</option>
+                            <option value="Electronic">🎹 Electronic</option>
+                            <option value="Jazz">🎺 Jazz</option>
+                            <option value="Classical">🎻 Classical</option>
+                            <option value="Reggae">🥁 Reggae</option>
+                            <option value="Country">🪕 Country</option>
+                            <option value="Blues">🎷 Blues</option>
+                            <option value="Folk">🎶 Folk</option>
+                            <option value="Metal">⚡ Metal</option>
+                            <option value="Indie">🎨 Indie</option>
+                            <option value="Alternative">🌟 Alternative</option>
+                            <option value="Funk">🎸 Funk</option>
+                            <option value="R&B">🎤 R&B</option>
+                            <option value="Otro">🎵 Otro</option>
+                        </select>
+                        <span asp-validation-for="Genero" class="validation-message"></span>
                     </div>
 
                     <!-- Duración -->

@@ -15,13 +15,15 @@ namespace Spotify.MVC.Controllers
         private readonly IAutorizarService _autoService;
         private readonly AppDbContext _context;  // Cambiado a AppDbContext
         private readonly IEmailService _emailService;
+        private readonly IUsuarioService _usuarioService;
 
         // Modificado el constructor para inyectar el contexto de la base de datos
-        public LoginController(IAutorizarService autoService, AppDbContext context, IEmailService emailService)
+        public LoginController(IAutorizarService autoService, AppDbContext context, IEmailService emailService, IUsuarioService usuarioService)
         {
             _autoService = autoService;
             _context = context;  // Asignamos el contexto aquí
             _emailService = emailService;
+            _usuarioService = usuarioService;
         }
 
 
@@ -136,79 +138,138 @@ namespace Spotify.MVC.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Register(string email, string nombre, string contraseña, string confirmPassword)
         {
-            // Verifica que la contraseña y la confirmación coincidan
-            if (contraseña != confirmPassword)
+            // Validar nombre
+            var nameValidation = PasswordValidator.ValidateName(nombre);
+            if (!nameValidation.IsValid)
             {
-                ViewBag.ErrorMessage = "Las contraseñas no coinciden.";
+                ViewBag.ErrorMessage = nameValidation.FirstError;
+                ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
                 return View();
             }
 
-            // Asegúrate de que esta consulta esté buscando correctamente el correo en la base de datos.
-            var usuarioExistente = await _context.Usuarios
-                                                 .FirstOrDefaultAsync(u => u.Email == email);
+            // Validar email
+            var emailValidation = PasswordValidator.ValidateEmail(email);
+            if (!emailValidation.IsValid)
+            {
+                ViewBag.ErrorMessage = emailValidation.FirstError;
+                ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
+                return View();
+            }
 
+            // Validar contraseña
+            var passwordValidation = PasswordValidator.ValidatePassword(contraseña);
+            if (!passwordValidation.IsValid)
+            {
+                ViewBag.ErrorMessage = passwordValidation.FirstError;
+                ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
+                return View();
+            }
+
+            // Validar confirmación de contraseña
+            var confirmValidation = PasswordValidator.ValidatePasswordConfirmation(contraseña, confirmPassword);
+            if (!confirmValidation.IsValid)
+            {
+                ViewBag.ErrorMessage = confirmValidation.FirstError;
+                ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
+                return View();
+            }
+
+            // Verificar si el usuario ya existe
+            var usuarioExistente = await _context.Usuarios
+                                                .FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
             if (usuarioExistente != null)
             {
                 ViewBag.ErrorMessage = "El correo electrónico ya está registrado.";
-                return View();  // Retorna al formulario con el mensaje de error
+                ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
+                return View();
             }
 
-            // Si no existe, crea el nuevo usuario
-            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(contraseña);  // Hashea la contraseña antes de guardarla
+            // Si todo está correcto, crear el nuevo usuario
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(contraseña);
             var nuevoUsuario = new Usuario
             {
-                Email = email,
-                Nombre = nombre,
+                Email = email.ToLower().Trim(),
+                Nombre = nombre.Trim(),
                 Contraseña = hashedPassword,
                 TipoUsuario = "cliente",
                 FechaRegistro = DateTime.UtcNow
             };
 
             _context.Usuarios.Add(nuevoUsuario);
-            await _context.SaveChangesAsync();  // Guarda el nuevo usuario en la base de datos
+            await _context.SaveChangesAsync();
 
-            await _emailService.enviarEmailBienvenida(email);
-            ViewBag.SuccessMessage = "Se ha enviado un correo electrónico de bienvenida";
-
-            ViewBag.SuccessMessage = "Registro exitoso. Ahora puedes iniciar sesión.";  // Mensaje de éxito
-            return RedirectToAction("Index", "Login");  // Redirige al login después de un registro exitoso
+            ViewBag.SuccessMessage = "Registro exitoso. Ahora puedes iniciar sesión.";
+            return RedirectToAction("Index", "Login");
         }
         [HttpGet]
         public IActionResult RegisterArtista()
         {
+            ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
             return View();
         }
 
-        // Registro para Artista
         [HttpPost]
         public async Task<IActionResult> RegisterArtista(string email, string nombre, string contraseña, string confirmPassword)
         {
-            if (contraseña != confirmPassword)
+            // Validar nombre
+            var nameValidation = PasswordValidator.ValidateName(nombre);
+            if (!nameValidation.IsValid)
             {
-                ViewBag.ErrorMessage = "Las contraseñas no coinciden.";
+                ViewBag.ErrorMessage = nameValidation.FirstError;
+                ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
                 return View("RegisterArtista");
             }
 
-            var usuarioExistente = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
+            // Validar email
+            var emailValidation = PasswordValidator.ValidateEmail(email);
+            if (!emailValidation.IsValid)
+            {
+                ViewBag.ErrorMessage = emailValidation.FirstError;
+                ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
+                return View("RegisterArtista");
+            }
+
+            // Validar contraseña
+            var passwordValidation = PasswordValidator.ValidatePassword(contraseña);
+            if (!passwordValidation.IsValid)
+            {
+                ViewBag.ErrorMessage = passwordValidation.FirstError;
+                ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
+                return View("RegisterArtista");
+            }
+
+            // Validar confirmación de contraseña
+            var confirmValidation = PasswordValidator.ValidatePasswordConfirmation(contraseña, confirmPassword);
+            if (!confirmValidation.IsValid)
+            {
+                ViewBag.ErrorMessage = confirmValidation.FirstError;
+                ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
+                return View("RegisterArtista");
+            }
+
+            // Verificar si el usuario ya existe
+            var usuarioExistente = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
             if (usuarioExistente != null)
             {
                 ViewBag.ErrorMessage = "Este correo electrónico ya está registrado.";
+                ViewBag.PasswordRequirements = PasswordValidator.GetPasswordRequirements();
                 return View("RegisterArtista");
             }
 
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword(contraseña);
             var nuevoUsuario = new Usuario
             {
-                Email = email,
-                Nombre = nombre,
+                Email = email.ToLower().Trim(),
+                Nombre = nombre.Trim(),
                 Contraseña = hashedPassword,
-                TipoUsuario = "artista",  // Asigna "artista" como rol
+                TipoUsuario = "artista",
                 FechaRegistro = DateTime.UtcNow
             };
 

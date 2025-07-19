@@ -46,12 +46,13 @@
                 </div>
             </div>
             <div class="song-player">
-                <audio controls class="audio-player" autoplay>
+                <!-- Eliminamos el atributo controls -->
+                <audio id="audio-player" class="audio-player" autoplay>
                     <source src="@Model.ArchivoUrl" type="audio/mp3" />
-                    Tu navegador no soporta el elemento
                     <code>audio</code>.
                 </audio>
             </div>
+
 
             <div class="player-controls">
                 <div class="control-buttons">
@@ -126,3 +127,54 @@
         </a>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const audioElement = document.getElementById('audio-player');
+        const playBtn = document.getElementById('playBtn');
+        const progressBar = document.querySelector('.progress-bar');
+        const progressFill = document.querySelector('.progress-fill');
+        const currentTimeDisplay = document.querySelector('.current-time');
+        const totalTimeDisplay = document.querySelector('.total-time');
+
+        let isPlaying = false;
+
+        // Reproducir/Pausar
+        playBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                audioElement.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            } else {
+                audioElement.play();
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Actualizar la barra de progreso mientras se reproduce la canción
+        audioElement.addEventListener('timeupdate', function() {
+            const percentage = (audioElement.currentTime / audioElement.duration) * 100;
+            progressFill.style.width = percentage + '%';
+
+            const minutes = Math.floor(audioElement.currentTime / 60);
+            const seconds = Math.floor(audioElement.currentTime % 60);
+            currentTimeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        });
+
+        // Interactividad con la barra de progreso (adelantar o retroceder la canción)
+        progressBar.addEventListener('click', function(e) {
+            const rect = progressBar.getBoundingClientRect();
+            const percentage = (e.clientX - rect.left) / rect.width;  // calcular el porcentaje del clic
+            audioElement.currentTime = percentage * audioElement.duration;  // Actualizar el tiempo de la canción
+        });
+
+        // Mostrar la duración total
+        audioElement.addEventListener('loadedmetadata', function() {
+            const minutes = Math.floor(audioElement.duration / 60);
+            const seconds = Math.floor(audioElement.duration % 60);
+            totalTimeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        });
+    });
+</script>
+
+

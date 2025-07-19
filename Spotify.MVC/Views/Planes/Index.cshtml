@@ -1,168 +1,4 @@
-﻿@* @model List<Spotify.Modelos.Plan>
-@{
-    ViewBag.Title = "Seleccionar Plan";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    <!-- Asegúrate de que este archivo Layout esté configurado correctamente -->
-}
-
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-success" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: linear-gradient(45deg, #8CE70C, #6F2DA8); color: #1C1C1C; padding: 1rem; border-radius: 10px; box-shadow: 0 10px 25px rgba(140, 231, 12, 0.3);">
-        @TempData["Message"]
-    </div>
-}
-
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: linear-gradient(45deg, #ff4444, #cc0000); color: white; padding: 1rem; border-radius: 10px; box-shadow: 0 10px 25px rgba(255, 68, 68, 0.3);">
-        @TempData["Error"]
-    </div>
-}
-
-<div class="particles"></div>
-<link rel="stylesheet" href="~/css/planes.css">
-
-<div class="plans-container">
-    <h1 class="plans-title">Elige tu Plan</h1>
-    <p class="plans-subtitle">Desbloquea todo el potencial de tu experiencia musical</p>
-
-    <div class="plans-grid">
-        @foreach (var plan in Model)
-        {
-            <div class="plan-card @(plan.Nombre.ToLower() == "premium" ? "featured" : "")">
-                @if (plan.Nombre.ToLower() == "premium")
-                {
-                    <div class="plan-badge">Más Popular</div>
-                }
-
-                <h2 class="plan-name">@plan.Nombre</h2>
-                <div class="plan-price">
-                    @if (plan.PrecioMensual == 0)
-                    {
-                        <text>Gratis</text>
-                    }
-                    else
-                    {
-                        <text>$@plan.PrecioMensual.ToString("F2")</text>
-                    }
-                </div>
-                <div class="plan-period">
-                    @if (plan.PrecioMensual == 0)
-                    {
-                        <text>Para siempre</text>
-                    }
-                    else
-                    {
-                        <text>por mes</text>
-                    }
-                </div>
-
-                <ul class="plan-features">
-                    @{
-                        var caracteristicas = ObtenerCaracteristicasPlan(plan.Nombre);
-                        foreach (var caracteristica in caracteristicas)
-                        {
-                            <li>@caracteristica</li>
-                        }
-                    }
-                    <li>@plan.Descripcion</li>
-                    @if (plan.MaximoUsuarios > 1)
-                    {
-                        <li>Hasta @plan.MaximoUsuarios usuarios</li>
-                    }
-                </ul>
-
-                @using (Html.BeginForm("SelectPlan", "Planes", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.Hidden("planId", ObtenerPlanStringId(plan.Nombre))
-                    <button type="submit" class="plan-button @(plan.Nombre.ToLower() == "premium" ? "featured" : "")">
-                        @if (plan.PrecioMensual == 0)
-                        {
-                            <text>Comenzar Gratis</text>
-                        }
-                        else
-                        {
-                            <text>Elegir @plan.Nombre</text>
-                        }
-                    </button>
-                }
-            </div>
-        }
-    </div>
-
-    <!-- Sección para planes adicionales -->
-    <div class="additional-plans">
-        <h3>¿Necesitas un plan personalizado?</h3>
-        <p>
-            Si tienes necesidades específicas o representas a una organización más grande,
-            contáctanos para crear un plan que se adapte perfectamente a tus requerimientos.
-            Ofrecemos soluciones personalizadas con precios especiales para empresas,
-            instituciones educativas y organizaciones sin fines de lucro.
-        </p>
-        <div style="text-align: center; margin-top: 2rem;">
-            @Html.ActionLink("Contactar Ventas", "Contact", "Home", null, new { @class = "plan-button", @style = "display: inline-block; text-decoration: none;" })
-        </div>
-    </div>
-</div>
-
-@functions {
-    List<string> ObtenerCaracteristicasPlan(string nombrePlan)
-    {
-        return nombrePlan.ToLower() switch
-        {
-            "básico" => new List<string>
-            {
-                "Acceso limitado a canciones",
-                "Anuncios entre canciones",
-                "Calidad de audio estándar",
-                "Reproducción aleatoria",
-                "Máximo 5 saltos por hora"
-            },
-            "premium" => new List<string>
-            {
-                "Acceso ilimitado a toda la música",
-                "Sin anuncios",
-                "Calidad de audio HD",
-                "Descarga para escuchar offline",
-                "Saltos ilimitados",
-                "Listas de reproducción personalizadas"
-            },
-            "familiar" => new List<string>
-            {
-                "Todas las funciones Premium",
-                "Mezcla familiar",
-                "Control parental",
-                "Perfiles individuales",
-                "Reproducción simultánea"
-            },
-            "estudiante" => new List<string>
-            {
-                "Todas las funciones Premium",
-                "Descuento especial para estudiantes",
-                "Verificación académica requerida",
-                "Acceso a contenido educativo",
-                "Podcasts académicos",
-                "Renovación anual"
-            },
-            _ => new List<string>()
-        };
-    }
-
-    string ObtenerPlanStringId(string nombrePlan)
-    {
-        return nombrePlan.ToLower() switch
-        {
-            "básico" => "basic",
-            "premium" => "premium",
-            "familiar" => "family",
-            "estudiante" => "student",
-            _ => nombrePlan.ToLower().Replace(" ", "")
-        };
-    }
-}
- *@
-@model List<Spotify.Modelos.Plan>
+﻿@model List<Spotify.Modelos.Plan>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -179,6 +15,272 @@
                 <a class="navbar-brand" href="/">Beathouse</a>
             </div>
         </nav>
+        <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1C1C1C 0%, #2a2a2a 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .navbar {
+            background: linear-gradient(90deg, #6F2DA8 0%, #8CE70C 100%) !important;
+            box-shadow: 0 4px 20px rgba(111, 45, 168, 0.3);
+            padding: 1rem 0;
+            border-bottom: 2px solid #8CE70C;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #8CE70C !important;
+            transform: scale(1.05);
+        }
+
+        .container-fluid {
+            max-width: 1200px;
+        }
+
+        /* Main content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        main {
+            padding-bottom: 3rem;
+        }
+
+        /* Title */
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #6F2DA8, #8CE70C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            font-weight: 700;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #6F2DA8, #8CE70C);
+            border-radius: 2px;
+        }
+
+        /* Cards container */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .col-md-4 {
+            flex: 0 0 auto;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        /* Card styling */
+        .card {
+            background: linear-gradient(145deg, #6D6E71, #1C1C1C);
+            border: 2px solid #6F2DA8;
+            border-radius: 15px;
+            box-shadow: 
+                0 10px 30px rgba(111, 45, 168, 0.3),
+                inset 0 1px 0 rgba(140, 231, 12, 0.2);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6F2DA8, #8CE70C, #FBAF00);
+            z-index: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 20px 40px rgba(111, 45, 168, 0.4),
+                0 0 20px rgba(140, 231, 12, 0.3);
+            border-color: #8CE70C;
+        }
+
+        .card-body {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8CE70C;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-text {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .card-text strong {
+            color: #FBAF00;
+            font-weight: 600;
+        }
+
+        /* Button styling */
+        .btn-primary {
+            background: linear-gradient(135deg, #6F2DA8 0%, #8CE70C 100%);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            font-weight: bold;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(111, 45, 168, 0.4);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(111, 45, 168, 0.6);
+            background: linear-gradient(135deg, #8CE70C 0%, #6F2DA8 100%);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(90deg, #1C1C1C 0%, #6D6E71 100%);
+            color: #8CE70C;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 2px solid #6F2DA8;
+            box-shadow: 0 -4px 20px rgba(111, 45, 168, 0.2);
+        }
+
+        .footer .container {
+            padding: 0 1rem;
+        }
+
+        /* Responsive design */
+        .media (max-width: 768px) {
+            .col-md-4 {
+                max-width: 100%;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .card-body {
+                padding: 1.5rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Loading animation for cards */
+        .card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+
+        .keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glow effect for special elements */
+        .card-title {
+            position: relative;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8CE70C, #FBAF00);
+            transition: width 0.3s ease;
+        }
+
+        .card:hover .card-title::after {
+            width: 100%;
+        }
+        </style>
     </header>
 
     <div class="container">
@@ -209,10 +311,5 @@
         </main>
     </div>
 
-    <footer class="footer text-muted">
-        <div class="container">
-            &copy; 2025 - Beathouse
-        </div>
-    </footer>
 </body>
 </html>

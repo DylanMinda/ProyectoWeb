@@ -1,7 +1,14 @@
 ﻿/* Estilos para el reproductor de canciones - Paleta EVA-01 */
+body {
+    background: linear-gradient(135deg, #1C1C1C 0%, #6F2DA8 50%, #1C1C1C 100%); /* Fondo de gradiente como el de la interfaz */
+    color: white; /* Aseguramos que el texto sea visible en el fondo oscuro */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 .player-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #1C1C1C 0%, #6F2DA8 50%, #1C1C1C 100%);
+    background: transparent;
     padding: 2rem;
     position: relative;
     overflow: hidden;
@@ -459,3 +466,20 @@
         grid-template-columns: 1fr;
     }
 }
+/* Elimina la barra de progreso y otros controles predeterminados */
+audio::-webkit-media-controls-panel {
+    display: none;
+}
+
+audio::-webkit-media-controls {
+    display: none;
+}
+
+audio {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+
+
+

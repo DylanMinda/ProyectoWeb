@@ -1,4 +1,11 @@
 ﻿/* Variables de colores EVA-01 */
+body {
+    height: 100%;
+    margin: 0;
+    background: linear-gradient(135deg, var(--eva-black) 0%, #2A2A2A 100%); /* Fondo oscuro */
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 :root {
     --eva-purple: #6F2DA8;
     --eva-green: #8CE70C;
@@ -17,9 +24,10 @@
     margin: 0 auto;
     padding: 20px;
     background: linear-gradient(135deg, var(--eva-black) 0%, #2A2A2A 100%);
-    min-height: 100vh;
+    min-height: 100vh; /* Esto asegura que el contenedor ocupe toda la altura de la ventana */
+    height: 100%; /* Esto también ayuda a asegurarse de que ocupe toda la altura */
     color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
 }
 
 /* Header del perfil */

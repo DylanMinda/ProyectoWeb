@@ -1,356 +1,275 @@
-﻿
-* {
+﻿* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #1C1C1C 0%, #6F2DA8 100%);
-    color: #8CE70C;
-    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1C1C1C 0%, #2a2a2a 100%);
+    color: #ffffff;
     min-height: 100vh;
+    line-height: 1.6;
 }
 
-/* Partículas de fondo */
-.particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    background-image: radial-gradient(2px 2px at 20px 30px, #8CE70C, transparent), radial-gradient(2px 2px at 40px 70px, #FBAF00, transparent), radial-gradient(1px 1px at 90px 40px, #6F2DA8, transparent), radial-gradient(1px 1px at 130px 80px, #8CE70C, transparent), radial-gradient(2px 2px at 160px 30px, #FBAF00, transparent);
-    background-repeat: repeat;
-    background-size: 400px 400px;
-    animation: sparkle 8s linear infinite;
+/* Header */
+.navbar {
+    background: linear-gradient(90deg, #6F2DA8 0%, #8CE70C 100%) !important;
+    box-shadow: 0 4px 20px rgba(111, 45, 168, 0.3);
+    padding: 1rem 0;
+    border-bottom: 2px solid #8CE70C;
 }
 
-@keyframes sparkle {
-    0% {
-        transform: translateY(0);
-        opacity: 0.3;
-    }
-
-    50% {
-        transform: translateY(-50px);
-        opacity: 0.8;
-    }
-
-    100% {
-        transform: translateY(-100px);
-        opacity: 0.3;
-    }
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
 }
 
-/* Contenedor principal */
-.plans-container {
+    .navbar-brand:hover {
+        color: #8CE70C !important;
+        transform: scale(1.05);
+    }
+
+.container-fluid {
+    max-width: 1200px;
+}
+
+/* Main content */
+.container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+main {
+    padding-bottom: 3rem;
+}
+
+/* Title */
+h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: linear-gradient(45deg, #6F2DA8, #8CE70C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    font-weight: 700;
+}
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #6F2DA8, #8CE70C);
+        border-radius: 2px;
+    }
+
+/* Cards container */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin: 0;
+}
+
+.col-md-4 {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 350px;
+}
+
+/* Card styling */
+.card {
+    background: linear-gradient(145deg, #6D6E71, #1C1C1C);
+    border: 2px solid #6F2DA8;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(111, 45, 168, 0.3), inset 0 1px 0 rgba(140, 231, 12, 0.2);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #6F2DA8, #8CE70C, #FBAF00);
+        z-index: 1;
+    }
+
+    .card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(111, 45, 168, 0.4), 0 0 20px rgba(140, 231, 12, 0.3);
+        border-color: #8CE70C;
+    }
+
+.card-body {
     padding: 2rem;
     position: relative;
     z-index: 2;
 }
 
-/* Título principal */
-.plans-title {
-    text-align: center;
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(45deg, #8CE70C, #6F2DA8, #FBAF00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: titleGlow 4s ease-in-out infinite;
-    text-shadow: 0 0 50px rgba(140, 231, 12, 0.5);
-}
-
-@keyframes titleGlow {
-    0%, 100% {
-        filter: brightness(1) drop-shadow(0 0 20px rgba(140, 231, 12, 0.5));
-    }
-
-    50% {
-        filter: brightness(1.3) drop-shadow(0 0 30px rgba(140, 231, 12, 0.8));
-    }
-}
-
-.plans-subtitle {
-    text-align: center;
-    font-size: 1.3rem;
-    color: #6D6E71;
-    margin-bottom: 3rem;
-    animation: fadeInUp 2s ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Grid de planes */
-.plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-
-/* Tarjetas de planes */
-.plan-card {
-    background: linear-gradient(135deg, rgba(111, 45, 168, 0.2), rgba(28, 28, 28, 0.8));
-    border-radius: 25px;
-    padding: 2.5rem;
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    text-align: center;
-    border: 3px solid transparent;
-    background-clip: padding-box;
-}
-
-    .plan-card::before {
-        content: '';
-        position: absolute;
-        top: -3px;
-        left: -3px;
-        right: -3px;
-        bottom: -3px;
-        background: linear-gradient(45deg, #8CE70C, #6F2DA8, #FBAF00, #8CE70C);
-        border-radius: 25px;
-        z-index: -1;
-        animation: cardBorder 4s linear infinite;
-    }
-
-@keyframes cardBorder {
-    0% {
-        background: linear-gradient(45deg, #8CE70C, #6F2DA8, #FBAF00, #8CE70C);
-    }
-
-    25% {
-        background: linear-gradient(45deg, #6F2DA8, #FBAF00, #8CE70C, #6F2DA8);
-    }
-
-    50% {
-        background: linear-gradient(45deg, #FBAF00, #8CE70C, #6F2DA8, #FBAF00);
-    }
-
-    75% {
-        background: linear-gradient(45deg, #8CE70C, #6F2DA8, #FBAF00, #8CE70C);
-    }
-
-    100% {
-        background: linear-gradient(45deg, #6F2DA8, #FBAF00, #8CE70C, #6F2DA8);
-    }
-}
-
-.plan-card:hover {
-    transform: translateY(-15px) scale(1.03);
-    box-shadow: 0 25px 50px rgba(140, 231, 12, 0.3);
-}
-
-.plan-card.featured {
-    transform: scale(1.05);
-    box-shadow: 0 30px 60px rgba(251, 175, 0, 0.4);
-}
-
-    .plan-card.featured::before {
-        background: linear-gradient(45deg, #FBAF00, #8CE70C, #6F2DA8, #FBAF00);
-        animation: featuredBorder 3s linear infinite;
-    }
-
-@keyframes featuredBorder {
-    0% {
-        background: linear-gradient(45deg, #FBAF00, #8CE70C, #6F2DA8, #FBAF00);
-    }
-
-    50% {
-        background: linear-gradient(45deg, #8CE70C, #6F2DA8, #FBAF00, #8CE70C);
-    }
-
-    100% {
-        background: linear-gradient(45deg, #FBAF00, #8CE70C, #6F2DA8, #FBAF00);
-    }
-}
-
-.plan-badge {
-    position: absolute;
-    top: -10px;
-    right: 20px;
-    background: linear-gradient(45deg, #FBAF00, #8CE70C);
-    color: #1C1C1C;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
+.card-title {
+    font-size: 1.5rem;
     font-weight: bold;
-    animation: badgePulse 2s ease-in-out infinite;
-}
-
-@keyframes badgePulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-.plan-name {
-    font-size: 2rem;
     color: #8CE70C;
     margin-bottom: 1rem;
-    text-shadow: 0 0 15px rgba(140, 231, 12, 0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.plan-price {
-    font-size: 3rem;
-    color: #FBAF00;
-    margin-bottom: 0.5rem;
-    text-shadow: 0 0 20px rgba(251, 175, 0, 0.5);
+.card-text {
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-size: 1rem;
 }
 
-.plan-period {
-    color: #6D6E71;
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-}
-
-.plan-features {
-    list-style: none;
-    margin-bottom: 2rem;
-    text-align: left;
-}
-
-    .plan-features li {
-        color: #6D6E71;
-        margin-bottom: 1rem;
-        position: relative;
-        padding-left: 2rem;
-        line-height: 1.5;
+    .card-text strong {
+        color: #FBAF00;
+        font-weight: 600;
     }
 
-        .plan-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #8CE70C;
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-shadow: 0 0 10px rgba(140, 231, 12, 0.5);
-        }
-
-.plan-button {
-    width: 100%;
-    padding: 1rem 2rem;
-    background: linear-gradient(45deg, #6F2DA8, #8CE70C);
-    color: #1C1C1C;
+/* Button styling */
+.btn-primary {
+    background: linear-gradient(135deg, #6F2DA8 0%, #8CE70C 100%);
     border: none;
     border-radius: 25px;
-    font-size: 1.1rem;
+    padding: 12px 30px;
     font-weight: bold;
-    cursor: pointer;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(111, 45, 168, 0.4);
     position: relative;
     overflow: hidden;
-    text-decoration: none;
-    display: inline-block;
-    box-shadow: 0 10px 25px rgba(140, 231, 12, 0.3);
+    width: 100%;
+    font-size: 1rem;
 }
 
-    .plan-button::before {
+    .btn-primary::before {
         content: '';
         position: absolute;
         top: 0;
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        transition: left 0.5s;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
     }
 
-    .plan-button:hover::before {
+    .btn-primary:hover::before {
         left: 100%;
     }
 
-    .plan-button:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 35px rgba(140, 231, 12, 0.5);
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(111, 45, 168, 0.6);
+        background: linear-gradient(135deg, #8CE70C 0%, #6F2DA8 100%);
     }
 
-    .plan-button.featured {
-        background: linear-gradient(45deg, #FBAF00, #8CE70C);
-        box-shadow: 0 15px 35px rgba(251, 175, 0, 0.4);
+    .btn-primary:active {
+        transform: translateY(0);
     }
 
-        .plan-button.featured:hover {
-            box-shadow: 0 20px 40px rgba(251, 175, 0, 0.6);
-        }
-
-/* Sección para planes adicionales */
-.additional-plans {
-    background: rgba(28, 28, 28, 0.6);
-    border-radius: 20px;
-    padding: 2rem;
+/* Footer */
+.footer {
+    background: linear-gradient(90deg, #1C1C1C 0%, #6D6E71 100%);
+    color: #8CE70C;
+    text-align: center;
+    padding: 2rem 0;
     margin-top: 3rem;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(140, 231, 12, 0.3);
+    border-top: 2px solid #6F2DA8;
+    box-shadow: 0 -4px 20px rgba(111, 45, 168, 0.2);
 }
 
-    .additional-plans h3 {
-        color: #8CE70C;
-        text-align: center;
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        text-shadow: 0 0 15px rgba(140, 231, 12, 0.5);
+    .footer .container {
+        padding: 0 1rem;
     }
 
-    .additional-plans p {
-        color: #6D6E71;
-        text-align: center;
-        font-size: 1.1rem;
-        line-height: 1.6;
-    }
+/* Responsive design */
+.media (max-width: 768px) {
+    .col-md-4
 
-/* Responsive */
-@media (max-width: 768px) {
-    .plans-title {
-        font-size: 2.5rem;
-    }
-
-    .plans-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .plan-card {
-        padding: 2rem;
-    }
-
-    .plan-price {
-        font-size: 2.5rem;
-    }
+{
+    max-width: 100%;
 }
 
-@media (max-width: 480px) {
-    .plans-container {
-        padding: 1rem;
+h2 {
+    font-size: 2rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+}
+
+/* Loading animation for cards */
+.card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+    .card:nth-child(1) {
+        animation-delay: 0.1s;
     }
 
-    .plan-card {
-        padding: 1.5rem;
+    .card:nth-child(2) {
+        animation-delay: 0.2s;
     }
 
-    .plans-title {
-        font-size: 2rem;
+    .card:nth-child(3) {
+        animation-delay: 0.3s;
     }
+
+.keyframes fadeInUp {
+    from
+
+{
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+}
+
+/* Glow effect for special elements */
+.card-title {
+    position: relative;
+}
+
+    .card-title::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #8CE70C, #FBAF00);
+        transition: width 0.3s ease;
+    }
+
+.card:hover .card-title::after {
+    width: 100%;
 }

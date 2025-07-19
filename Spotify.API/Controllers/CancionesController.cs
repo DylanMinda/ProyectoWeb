@@ -53,25 +53,21 @@ namespace Spotify.API.Controllers
         }
 
         // PUT: api/Canciones/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCancion(int id, Cancion cancion)
         {
             if (id != cancion.Id)
             {
-                return BadRequest();
+                return BadRequest(); // Si el ID no coincide, devolvemos un error 400.
             }
 
-            // Verificamos que la canción existe
             var cancionExistente = await _context.Canciones.FindAsync(id);
             if (cancionExistente == null)
             {
-                return NotFound();
+                return NotFound(); // Si no encontramos la canción, devolvemos un error 404.
             }
 
-            // Si se desea actualizar la propiedad TotalReproducciones, no la actualizamos aquí, ya que se maneja automáticamente.
-            // Solo actualizamos los campos necesarios, por ejemplo, Titulo, Duracion, etc.
-
+            // Actualizamos solo los campos necesarios.
             cancionExistente.Titulo = cancion.Titulo;
             cancionExistente.Duracion = cancion.Duracion;
             cancionExistente.Genero = cancion.Genero;
@@ -82,33 +78,31 @@ namespace Spotify.API.Controllers
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); // Guardamos los cambios en la base de datos.
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!CancionExists(id))
                 {
-                    return NotFound();
+                    return NotFound(); // Si la canción no existe, devolvemos un error 404.
                 }
                 else
                 {
-                    throw;
+                    throw; // Lanzamos cualquier otro error de concurrencia.
                 }
             }
 
-            return NoContent();
+            return NoContent(); // Si todo va bien, devolvemos una respuesta sin contenido.
         }
 
-
         // POST: api/Canciones
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Cancion>> PostCancion(Cancion cancion)
         {
-            _context.Canciones.Add(cancion);
-            await _context.SaveChangesAsync();
+            _context.Canciones.Add(cancion); // Añadimos la nueva canción a la base de datos.
+            await _context.SaveChangesAsync(); // Guardamos los cambios.
 
-            return CreatedAtAction("GetCancion", new { id = cancion.Id }, cancion);
+            return CreatedAtAction("GetCancion", new { id = cancion.Id }, cancion); // Devolvemos la canción creada.
         }
 
         // DELETE: api/Canciones/5
@@ -118,35 +112,36 @@ namespace Spotify.API.Controllers
             var cancion = await _context.Canciones.FindAsync(id);
             if (cancion == null)
             {
-                return NotFound();
+                return NotFound(); // Si no encontramos la canción, devolvemos un error 404.
             }
 
-            _context.Canciones.Remove(cancion);
-            await _context.SaveChangesAsync();
+            _context.Canciones.Remove(cancion); // Eliminamos la canción de la base de datos.
+            await _context.SaveChangesAsync(); // Guardamos los cambios.
 
-            return NoContent();
+            return NoContent(); // Devolvemos una respuesta sin contenido para indicar que la operación fue exitosa.
         }
 
         private bool CancionExists(int id)
         {
-            return _context.Canciones.Any(e => e.Id == id);
+            return _context.Canciones.Any(e => e.Id == id); // Verificamos si la canción existe en la base de datos.
         }
 
+        // POST: api/Canciones/upload
         [HttpPost("upload")]
         public async Task<ActionResult<Cancion>> UploadCancion([FromForm] CancionDTO dto)
         {
-            // 1. Obtener/crear contenedor
+            // 1. Obtenemos o creamos el contenedor de almacenamiento
             var container = _blobService.GetBlobContainerClient(_containerName);
             await container.CreateIfNotExistsAsync();
 
-            // 2. Generar nombre único y subir
+            // 2. Generamos un nombre único para el archivo y lo subimos
             var ext = Path.GetExtension(dto.Archivo.FileName);
             var blobName = $"{Guid.NewGuid()}{ext}";
             var blob = container.GetBlobClient(blobName);
             await using var stream = dto.Archivo.OpenReadStream();
             await blob.UploadAsync(stream, new BlobHttpHeaders { ContentType = dto.Archivo.ContentType });
 
-            // 3. Mapear DTO → entidad y guardar en BD
+            // 3. Mapear el DTO a la entidad Cancion y guardarla en la base de datos
             var cancion = new Cancion
             {
                 Titulo = dto.Titulo,
@@ -157,58 +152,11 @@ namespace Spotify.API.Controllers
                 AlbumId = dto.AlbumId
             };
 
-            _context.Canciones.Add(cancion);
-            await _context.SaveChangesAsync();
+            _context.Canciones.Add(cancion); // Añadimos la canción a la base de datos.
+            await _context.SaveChangesAsync(); // Guardamos los cambios.
 
-            return CreatedAtAction(nameof(GetCancion), new { id = cancion.Id }, cancion);
+            return CreatedAtAction(nameof(GetCancion), new { id = cancion.Id }, cancion); // Devolvemos la canción creada.
         }
-
-        [HttpPost("{id}/incrementar-reproduccion")]
-        public async Task<IActionResult> IncrementarReproduccion(int id)
-        {
-            // Obtener el usuario logueado
-            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Obtener el usuario logueado
-            var usuario = await _context.Usuarios.Include(u => u.Plan).FirstOrDefaultAsync(u => u.Id == usuarioId);
-
-            if (usuario == null)
-            {
-                return Unauthorized(); // Si no está logueado
-            }
-
-            var cancion = await _context.Canciones.FindAsync(id);
-            if (cancion == null)
-            {
-                return NotFound();
-            }
-
-            // Si el usuario tiene el plan Free, aplicar las restricciones
-            if (usuario.Plan.Nombre == "Free")
-            {
-                if (cancion.TotalReproducciones >= 5) // Límite de 5 reproducciones
-                {
-                    // Mostrar el anuncio
-                    return BadRequest("Límite de reproducciones alcanzado. Cambia de plan o espera.");
-                }
-
-                // Si no se alcanzó el límite, incrementar la reproducción
-                cancion.TotalReproducciones++;
-
-                // Guardamos los cambios
-                _context.Canciones.Update(cancion);
-                await _context.SaveChangesAsync();
-
-                // Respuesta con anuncio
-                return Ok("Reproducción exitosa, mostrando anuncio...");
-            }
-
-            // Si es Premium, simplemente incrementa las reproducciones sin restricciones
-            cancion.TotalReproducciones++;
-            _context.Canciones.Update(cancion);
-            await _context.SaveChangesAsync();
-
-            return Ok("Reproducción exitosa sin restricciones.");
-        }
-
 
     }
 }

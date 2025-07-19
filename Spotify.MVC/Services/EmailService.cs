@@ -13,38 +13,8 @@ namespace Spotify.MVC.Services
     {
         private readonly string _smtpServer = "smtp.gmail.com"; 
         private readonly int _smptPort = 587; 
-        private readonly string _fromEmail = "soyeljoni123@gmail.com"; 
-        private readonly string _fromPassword = "isst qlfk eetu anzt"; 
-        public async Task enviarEmailBienvenida(string email)
-        {
-            try
-            {
-                Console.WriteLine("Enviando correo de recuperación...");
-                var mensaje = new MimeMessage(); 
-                mensaje.From.Add(new MailboxAddress("BeatHouse", _fromEmail)); 
-                mensaje.To.Add(new MailboxAddress("", email)); 
-                mensaje.Subject = "Te damos la bienvenida, su ingreso a sido exitoso"; 
-
-                mensaje.Body = new TextPart("plain") 
-                {
-                    Text = $"Hola,\n\n¡Bienvenido! Tu ingreso ha sido exitoso"
-                };
-
-                using (var cliente = new SmtpClient())
-                {
-                    await cliente.ConnectAsync(_smtpServer, _smptPort, SecureSocketOptions.StartTls); 
-                    await cliente.AuthenticateAsync(_fromEmail, _fromPassword); 
-                    await cliente.SendAsync(mensaje);
-                    await cliente.DisconnectAsync(true); 
-                }
-                Console.WriteLine("Correo enviado con éxito.");
-            }
-            catch (Exception ex)
-            {
-                // Manejar excepciones de envío de correo electrónico
-                Console.WriteLine($"Error al enviar el correo electrónico: {ex.Message}");
-            }
-        }
+        private readonly string _fromEmail = "beathousetucasa@gmail.com"; 
+        private readonly string _fromPassword = "miih bbhy lwox drof"; 
 
         public async Task enviarEmailRecuperacionContraseña(string email)
         {

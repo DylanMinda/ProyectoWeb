@@ -12,7 +12,6 @@ CRUD<Plan>.EndPoint = "https://localhost:7028/api/Planes";
 CRUD<Playlist>.EndPoint = "https://localhost:7028/api/Playlists";
 CRUD<Album>.EndPoint = "https://localhost:7028/api/Albums";
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Contexto de EF Core
@@ -30,9 +29,14 @@ builder.Services.AddSession(options =>
     options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 });
 
+// Registrar HttpClient para servicios que lo necesiten
+builder.Services.AddHttpClient();
+
 // Servicios de tu aplicación
 builder.Services.AddScoped<IAutorizarService, AutorizarService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+// AGREGAR: Registro del servicio de usuario
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
 // MVC y autenticación por cookies
 builder.Services.AddControllersWithViews();
@@ -68,7 +72,6 @@ using (var scope = app.Services.CreateScope())
         ctx.SaveChanges();
     }
 }
-
 
 // Pipeline HTTP
 if (!app.Environment.IsDevelopment())

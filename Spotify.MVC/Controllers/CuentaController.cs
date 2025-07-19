@@ -36,7 +36,7 @@ namespace Spotify.MVC.Controllers
             }
 
             // Verifica si el email ya está registrado
-            if (await _usuarioService.ExisteEmailAsync(modelo.Email))
+            if (await _usuarioService.exiteEmail(modelo.Email))
             {
                 ModelState.AddModelError("Email", "Este email ya está registrado");
                 return View(modelo);
@@ -54,7 +54,7 @@ namespace Spotify.MVC.Controllers
                     FechaRegistro = DateTime.UtcNow
                 };
 
-                var usuarioCreado = await _usuarioService.CrearUsuarioAsync(nuevoUsuario);
+                var usuarioCreado = await _usuarioService.crearUsuario(nuevoUsuario);
 
                 // Redirigir a página de éxito o login
                 TempData["MensajeExito"] = "Usuario registrado exitosamente. Ya puedes iniciar sesión.";
@@ -83,7 +83,7 @@ namespace Spotify.MVC.Controllers
                 return View();
             }
 
-            var usuario = await _usuarioService.ValidarUsuarioAsync(email, contraseña);
+            var usuario = await _usuarioService.validarUsuario(email, contraseña);
             if (usuario != null)
             {
                 // Aquí creamos los claims para la autenticación
@@ -158,7 +158,7 @@ namespace Spotify.MVC.Controllers
         [HttpGet]
         public async Task<JsonResult> VerificarEmail(string email)
         {
-            bool existe = await _usuarioService.ExisteEmailAsync(email);
+            bool existe = await _usuarioService.exiteEmail(email);
             return Json(!existe);
         }
     }
