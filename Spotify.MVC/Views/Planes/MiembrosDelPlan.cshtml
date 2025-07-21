@@ -1,0 +1,237 @@
+﻿<!-- Views/Planes/MiembrosDelPlan.cshtml - Vista para gestionar miembros -->
+@model List<Spotify.Modelos.Usuario>
+@{
+    ViewData["Title"] = "Gestionar Miembros";
+}
+
+<div class="container mt-4">
+    <h2>Gestionar Miembros del Plan @ViewBag.Plan.Nombre</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+    <link rel="stylesheet" href="~/css/planes-general.css" />
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Información del Plan</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Plan:</strong> @ViewBag.Plan.Nombre</p>
+                    <p><strong>Miembros:</strong> @Model.Count/@ViewBag.Plan.MaximoUsuarios</p>
+                    <p><strong>Espacios disponibles:</strong> @ViewBag.EspaciosDisponibles</p>
+
+                    @if (ViewBag.EsAdministrador)
+                    {
+                        <hr>
+                        <p><strong>Tu código de invitación:</strong></p>
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="@ViewBag.CodigoInvitacion" readonly>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" onclick="copiarCodigo()">Copiar</button>
+                            </div>
+                        </div>
+                        <small class="text-muted">Comparte este código para invitar usuarios</small>
+                    }
+                </div>
+            </div>
+
+            @if (ViewBag.EsAdministrador)
+            {
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5>Acciones de Administrador</h5>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-success btn-block mb-2" onclick="compartirCodigo()">
+                            Compartir Código de Invitación
+                        </button>
+                        <button class="btn btn-danger btn-block" onclick="cancelarPlan()">
+                            Cancelar Plan Completo
+                        </button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5>Acciones</h5>
+                    </div>
+                    <div class="card-body">
+                        <button class="btn btn-warning btn-block" onclick="abandonarPlan()">
+                            Abandonar Plan
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Miembros del Plan</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Fecha de Registro</th>
+                                    @if (ViewBag.EsAdministrador)
+                                    {
+                                        <th>Acciones</th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var miembro in Model)
+                                {
+                                    <tr>
+                                        <td>@miembro.Nombre</td>
+                                        <td>@miembro.Email</td>
+                                        <td>
+                                            @if (miembro.Id == ViewBag.Administrador.Id)
+                                            {
+                                                <span class="badge badge-primary">Administrador</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-secondary">Miembro</span>
+                                            }
+                                        </td>
+                                        <td>@miembro.FechaRegistro.ToString("dd/MM/yyyy")</td>
+                                        @if (ViewBag.EsAdministrador)
+                                        {
+                                            <td>
+                                                @if (miembro.Id != ViewBag.Administrador.Id)
+                                                {
+                                                    <button class="btn btn-sm btn-danger" onclick="expulsarMiembro(@miembro.Id, '@miembro.Nombre')">
+                                                        Expulsar
+                                                    </button>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted">N/A</span>
+                                                }
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="@Url.Action("MiPlan")" class="btn btn-secondary">Volver a Mi Plan</a>
+        <a href="@Url.Action("Index")" class="btn btn-outline-secondary">Ver Todos los Planes</a>
+    </div>
+</div>
+
+<script>
+    function copiarCodigo() {
+        const codigo = '@ViewBag.CodigoInvitacion';
+        navigator.clipboard.writeText(codigo).then(function() {
+            alert('Código copiado al portapapeles: ' + codigo);
+        }).catch(function() {
+            // Fallback para navegadores que no soporten clipboard API
+            const textArea = document.createElement('textarea');
+            textArea.value = codigo;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Código copiado: ' + codigo);
+        });
+    }
+
+    function compartirCodigo() {
+        fetch('/Planes/CompartirCodigoInvitacion')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            alert('Error al obtener el código de invitación.');
+        });
+    }
+
+    function expulsarMiembro(miembroId, nombre) {
+        if (confirm(`¿Estás seguro de que quieres expulsar a ${nombre} del plan?`)) {
+            fetch('/Planes/ExpulsarMiembro', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `miembroId=${miembroId}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                alert('Error al expulsar al miembro.');
+            });
+        }
+    }
+
+    function abandonarPlan() {
+        if (confirm('¿Estás seguro de que quieres abandonar este plan grupal?')) {
+            fetch('/Planes/AbandonarPlan', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    window.location.href = '@Url.Action("Index")';
+                }
+            })
+            .catch(error => {
+                alert('Error al abandonar el plan.');
+            });
+        }
+    }
+
+    function cancelarPlan() {
+        if (confirm('¿Estás seguro de que quieres cancelar este plan? Todos los miembros serán removidos y movidos al plan gratuito.')) {
+            fetch('/Planes/CancelarPlan', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    window.location.href = '@Url.Action("Index")';
+                }
+            })
+            .catch(error => {
+                alert('Error al cancelar el plan.');
+            });
+        }
+    }
+</script>

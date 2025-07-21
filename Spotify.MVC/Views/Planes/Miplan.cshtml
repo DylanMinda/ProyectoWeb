@@ -1,0 +1,227 @@
+﻿<!-- Views/Planes/MiPlan.cshtml - Vista para ver el plan actual -->
+@model Spotify.Modelos.Usuario
+@{
+    ViewData["Title"] = "Mi Plan";
+}
+<div class="container mt-4">
+    <h2>Mi Plan Actual</h2>
+    <link rel="stylesheet" href="~/css/planes-general.css" />
+
+    @if (ViewBag.Mensaje != null)
+    {
+        <div class="alert alert-info">
+            @ViewBag.Mensaje
+            <br>
+            <a href="@Url.Action("Index")" class="btn btn-primary mt-2">Ver Planes Disponibles</a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-8">
+                <!-- Información básica del plan -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Información del Plan</h5>
+                    </div>
+                    <div class="card-body">
+                        <h4>@Model.Plan.Nombre</h4>
+                        <p><strong>Precio:</strong> $@Model.Plan.PrecioMensual/mes</p>
+                        <p><strong>Descripción:</strong> @Model.Plan.Descripcion</p>
+
+                        @if (Model.Plan.MaximoUsuarios > 1)
+                        {
+                            <p><strong>Tipo:</strong> Plan Grupal (hasta @Model.Plan.MaximoUsuarios usuarios)</p>
+                            <p><strong>Usuarios actuales:</strong> @ViewBag.CantidadMiembros/@Model.Plan.MaximoUsuarios</p>
+
+                            @if (ViewBag.EsAdministrador)
+                            {
+                                <div class="alert alert-success">
+                                    <h6><i class="fas fa-crown"></i> Eres el Administrador de este plan</h6>
+                                    <p>
+                                        <strong>Tu código de invitación:</strong>
+                                        <span class="badge badge-primary">@ViewBag.CodigoInvitacion</span>
+                                        <button class="btn btn-sm btn-outline-primary ml-2" onclick="copiarCodigo()">Copiar</button>
+                                    </p>
+                                    <small class="text-muted">Comparte este código con las personas que quieras invitar</small>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-users"></i> Miembro del plan grupal</h6>
+                                    <p><strong>Administrador:</strong> @ViewBag.Administrador.Nombre</p>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p><strong>Tipo:</strong> Plan Individual</p>
+                        }
+                    </div>
+                </div>
+
+                <!-- Acciones disponibles -->
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Acciones Disponibles</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (Model.Plan.MaximoUsuarios > 1)
+                        {
+                            <!-- Acciones para planes grupales -->
+                            <a href="@Url.Action("MiembrosDelPlan")" class="btn btn-info mb-2">
+                                <i class="fas fa-users"></i> Ver y Gestionar Miembros
+                            </a>
+
+                            @if (ViewBag.EsAdministrador)
+                            {
+                                <button class="btn btn-success mb-2" onclick="compartirCodigo()">
+                                    <i class="fas fa-share"></i> Compartir Código de Invitación
+                                </button>
+                                <button class="btn btn-danger mb-2" onclick="cancelarPlan()">
+                                    <i class="fas fa-times-circle"></i> Cancelar Plan Completo
+                                </button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-warning mb-2" onclick="abandonarPlan()">
+                                    <i class="fas fa-sign-out-alt"></i> Abandonar Plan
+                                </button>
+                            }
+                        }
+                        else
+                        {
+                            <!-- Acciones para plan individual -->
+                            <button class="btn btn-danger mb-2" onclick="cancelarPlan()">
+                                <i class="fas fa-times-circle"></i> Cancelar Plan
+                            </button>
+                        }
+
+                        <a href="@Url.Action("Index")" class="btn btn-secondary mb-2">
+                            <i class="fas fa-list"></i> Ver Otros Planes
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <!-- Información de la cuenta -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Mi Cuenta</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Usuario:</strong> @Model.Nombre</p>
+                        <p><strong>Email:</strong> @Model.Email</p>
+                        <p>
+                            <strong>Saldo actual:</strong>
+                            <span class="badge badge-@(Model.Saldo >= 10 ? "success" : "warning")">
+                                $@(Model.Saldo ?? 0)
+                            </span>
+                        </p>
+                        <p><strong>Fecha de registro:</strong> @Model.FechaRegistro.ToString("dd/MM/yyyy")</p>
+
+                        <a href="@Url.Action("RecargarSaldo")" class="btn btn-primary btn-sm btn-block">
+                            <i class="fas fa-credit-card"></i> Recargar Saldo
+                        </a>
+                    </div>
+                </div>
+
+                @if (Model.Plan.MaximoUsuarios > 1 && ViewBag.EsAdministrador)
+                {
+                    <!-- Estadísticas del plan grupal -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>Estadísticas del Plan</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="progress mb-2">
+                                <div class="progress-bar" role="progressbar"
+                                     style="width: @(((double)ViewBag.CantidadMiembros / Model.Plan.MaximoUsuarios) * 100)%">
+                                    @ViewBag.CantidadMiembros/@Model.Plan.MaximoUsuarios
+                                </div>
+                            </div>
+                            <small class="text-muted">
+                                Espacios ocupados: @ViewBag.CantidadMiembros de @Model.Plan.MaximoUsuarios
+                            </small>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    function copiarCodigo() {
+        const codigo = '@ViewBag.CodigoInvitacion';
+        navigator.clipboard.writeText(codigo).then(function() {
+            alert('Código copiado al portapapeles: ' + codigo);
+        }).catch(function() {
+            // Fallback para navegadores que no soporten clipboard API
+            const textArea = document.createElement('textarea');
+            textArea.value = codigo;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Código copiado: ' + codigo);
+        });
+    }
+
+    function compartirCodigo() {
+        fetch('/Planes/CompartirCodigoInvitacion')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+            } else {
+                alert(data.message);
+            }
+        })
+        .catch(error => {
+            alert('Error al obtener el código de invitación.');
+        });
+    }
+
+    function abandonarPlan() {
+        if (confirm('¿Estás seguro de que quieres abandonar este plan? Serás movido al plan gratuito.')) {
+            fetch('/Planes/AbandonarPlan', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    location.reload();
+                }
+            })
+            .catch(error => {
+                alert('Error al abandonar el plan.');
+            });
+        }
+    }
+
+    function cancelarPlan() {
+        const mensaje = @Model.Plan.MaximoUsuarios > 1
+            ? '¿Estás seguro de que quieres cancelar este plan? Todos los miembros serán movidos al plan gratuito.'
+            : '¿Estás seguro de que quieres cancelar este plan?';
+
+        if (confirm(mensaje)) {
+            fetch('/Planes/CancelarPlan', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+                if (data.success) {
+                    location.reload();
+                }
+            })
+            .catch(error => {
+                alert('Error al cancelar el plan.');
+            });
+        }
+    }
+</script>
