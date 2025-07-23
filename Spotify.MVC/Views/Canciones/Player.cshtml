@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Reproductor";
 }
-<link rel="stylesheet" href="~/css/songPlayer.css">
+<link rel="stylesheet" href="~/css/songPlayer.css?v=@DateTime.Now.Ticks">
 
 <div class="player-container">
     <div class="player-header">
@@ -16,6 +16,13 @@
                 <i class="fas fa-music"></i>
                 Ahora reproduciendo
             </span>
+            @if (ViewBag.EsPlanGratuito)
+            {
+                <span class="meta-item plan-info">
+                    <i class="fas fa-info-circle"></i>
+                    Plan Gratuito - Reproducciones restantes: @ViewBag.ReproduccionesRestantes
+                </span>
+            }
         </div>
     </div>
 
@@ -37,7 +44,7 @@
         <div class="song-info-section">
             <div class="song-details">
                 <h2 class="song-title">@Model.Titulo</h2>
-                <h3 class="song-artist">@Model.ArtistaId</h3>
+                <h3 class="song-artist">@Model.ArtistaCodigoNav?.Nombre</h3>
                 <div class="song-stats">
                     <span class="stat-item">
                         <i class="fas fa-clock"></i>
@@ -45,40 +52,40 @@
                     </span>
                 </div>
             </div>
+
+            <!-- Reproductor de audio nativo -->
             <div class="song-player">
-                <!-- Eliminamos el atributo controls -->
-                <audio id="audio-player" class="audio-player" autoplay>
-                    <source src="@Model.ArchivoUrl" type="audio/mp3" />
-                    <code>audio</code>.
-                </audio>
+                @if (ViewBag.EsPlanGratuito)
+                {
+                    <!-- Para usuarios gratuitos: reproductor con limitaciones -->
+                    <audio controls preload="metadata" controlslist="nodownload">
+                        <source src="@Model.ArchivoUrl" type="audio/mp3" />
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+
+                    <div class="plan-limitation-notice">
+                        <p><i class="fas fa-exclamation-triangle"></i> Plan Gratuito: Reproducciones limitadas y pausas publicitarias</p>
+                        <a href="@Url.Action("Index", "Planes")" class="btn btn-premium">
+                            <i class="fas fa-crown"></i> Upgrade a Premium
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <!-- Para usuarios premium: reproductor completo -->
+                    <audio controls preload="auto">
+                        <source src="@Model.ArchivoUrl" type="audio/mp3" />
+                        Tu navegador no soporta el elemento de audio.
+                    </audio>
+
+                    <div class="premium-features">
+                        <p><i class="fas fa-crown"></i> Usuario Premium: Sin limitaciones</p>
+                       
+                    </div>
+                }
             </div>
 
-
-            <div class="player-controls">
-                <div class="control-buttons">
-                    <button class="control-btn" id="prevBtn">
-                        <i class="fas fa-step-backward"></i>
-                    </button>
-                    <button class="control-btn play-btn" id="playBtn">
-                        <i class="fas fa-play"></i>
-                    </button>
-                    <button class="control-btn" id="nextBtn">
-                        <i class="fas fa-step-forward"></i>
-                    </button>
-                </div>
-
-                <div class="progress-section">
-                    <div class="progress-bar">
-                        <div class="progress-fill"></div>
-                        <div class="progress-handle"></div>
-                    </div>
-                    <div class="time-display">
-                        <span class="current-time">0:00</span>
-                        <span class="total-time">@Model.Duracion.ToString(@"mm\:ss")</span>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Visualizador (solo decorativo sin JS) -->
             <div class="visualizer-section">
                 <div class="audio-visualizer">
                     <div class="visualizer-bar"></div>
@@ -106,14 +113,33 @@
                 </div>
                 <div class="info-item">
                     <label>Artista:</label>
-                    <span>@Model.ArtistaId</span>
+                    <span>@Model.ArtistaCodigoNav?.Nombre</span>
                 </div>
                 <div class="info-item">
                     <label>Duración:</label>
                     <span>@Model.Duracion.ToString(@"mm\:ss")</span>
                 </div>
+                <div class="info-item">
+                    <label>Estado:</label>
+                    <span>@(ViewBag.EsPlanGratuito ? "Free" : "Premium")</span>
+                </div>
             </div>
         </div>
+
+        @if (ViewBag.EsPlanGratuito)
+        {
+            <div class="plan-limitation-notice">
+                <p><i class="fas fa-exclamation-triangle"></i> Plan Gratuito: Reproducciones limitadas y pausas publicitarias.</p>
+                <p>Reproducción restante: @ViewBag.ReproduccionesRestantes</p>
+            </div>
+            <!-- Aquí puedes mostrar un mensaje de pausa publicitaria -->
+            <div class="pause-message">
+                @if (ViewBag.PauseMessage != null)
+                {
+                    <p>@ViewBag.PauseMessage</p>
+                }
+            </div>
+        }
     </div>
 
     <div class="button-group">
@@ -128,53 +154,10 @@
     </div>
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const audioElement = document.getElementById('audio-player');
-        const playBtn = document.getElementById('playBtn');
-        const progressBar = document.querySelector('.progress-bar');
-        const progressFill = document.querySelector('.progress-fill');
-        const currentTimeDisplay = document.querySelector('.current-time');
-        const totalTimeDisplay = document.querySelector('.total-time');
-
-        let isPlaying = false;
-
-        // Reproducir/Pausar
-        playBtn.addEventListener('click', function() {
-            if (isPlaying) {
-                audioElement.pause();
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            } else {
-                audioElement.play();
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            }
-            isPlaying = !isPlaying;
-        });
-
-        // Actualizar la barra de progreso mientras se reproduce la canción
-        audioElement.addEventListener('timeupdate', function() {
-            const percentage = (audioElement.currentTime / audioElement.duration) * 100;
-            progressFill.style.width = percentage + '%';
-
-            const minutes = Math.floor(audioElement.currentTime / 60);
-            const seconds = Math.floor(audioElement.currentTime % 60);
-            currentTimeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        });
-
-        // Interactividad con la barra de progreso (adelantar o retroceder la canción)
-        progressBar.addEventListener('click', function(e) {
-            const rect = progressBar.getBoundingClientRect();
-            const percentage = (e.clientX - rect.left) / rect.width;  // calcular el porcentaje del clic
-            audioElement.currentTime = percentage * audioElement.duration;  // Actualizar el tiempo de la canción
-        });
-
-        // Mostrar la duración total
-        audioElement.addEventListener('loadedmetadata', function() {
-            const minutes = Math.floor(audioElement.duration / 60);
-            const seconds = Math.floor(audioElement.duration % 60);
-            totalTimeDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        });
-    });
-</script>
-
-
+@if (ViewBag.EsPlanGratuito)
+{
+    <!-- Meta refresh para simular pausas publicitarias (opcional) -->
+    <noscript>
+        <meta http-equiv="refresh" content="45;url=@Url.Action("Player", new { id = Model.Id })">
+    </noscript>
+}

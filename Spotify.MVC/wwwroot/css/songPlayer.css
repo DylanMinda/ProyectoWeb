@@ -466,19 +466,6 @@ body {
         grid-template-columns: 1fr;
     }
 }
-/* Elimina la barra de progreso y otros controles predeterminados */
-audio::-webkit-media-controls-panel {
-    display: none;
-}
-
-audio::-webkit-media-controls {
-    display: none;
-}
-
-audio {
-    -webkit-appearance: none;
-    appearance: none;
-}
 
 
 

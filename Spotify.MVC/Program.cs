@@ -22,11 +22,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30);
-    options.Cookie.HttpOnly = true;                       // Solo accesible desde HTTP
-    options.Cookie.IsEssential = true;                       // Siempre se envía
-    options.Cookie.SameSite = SameSiteMode.Lax;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+    options.IdleTimeout = TimeSpan.FromHours(2); // Configura el tiempo de expiración de la sesión a 2 horas
+    options.Cookie.HttpOnly = true;             // Solo accesible desde HTTP
+    options.Cookie.IsEssential = true;          // Siempre se envía
+    options.Cookie.SameSite = SameSiteMode.Lax; // Política SameSite Lax para cookies
+    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest; // Seguridad de cookies dependiendo del protocolo de la solicitud
 });
 
 // Registrar HttpClient para servicios que lo necesiten
@@ -47,7 +47,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
         options.LoginPath = "/Login/Index";
         options.SlidingExpiration = true;
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Tiempo de expiración de la cookie de autenticación
     });
 
 // Para acceder al HttpContext en servicios
@@ -55,7 +55,7 @@ builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-// Seed del admin
+// Seed del admin (para inicializar el usuario admin si no existe)
 using (var scope = app.Services.CreateScope())
 {
     var ctx = scope.ServiceProvider.GetRequiredService<AppDbContext>();
@@ -80,15 +80,16 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
+app.UseHttpsRedirection();  // Asegura que la app siempre use HTTPS
+app.UseStaticFiles();  // Habilita el acceso a archivos estáticos (CSS, JS, imágenes, etc.)
+app.UseRouting();  // Habilita el enrutamiento
 
-// Orden correcto: sesión primero, luego auth
-app.UseSession();
-app.UseAuthentication();
-app.UseAuthorization();
+// Orden correcto: sesión primero, luego autenticación y autorización
+app.UseSession();        // Habilita el uso de sesiones
+app.UseAuthentication(); // Habilita la autenticación por cookies
+app.UseAuthorization();  // Habilita la autorización
 
+// Configuración de las rutas de los controladores
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
