@@ -26,19 +26,19 @@ namespace Spotify.MVC.Controllers
         // GET: Cancion/Player/5
         public async Task<IActionResult> Player(int? id)
         {
-            if (!id.HasValue) return NotFound();
+            if (!id.HasValue) return NotFound();// Verificar si el ID es nulo
 
             var cancion = await _context.Canciones
-                .Include(c => c.ArtistaCodigoNav)
-                .FirstOrDefaultAsync(c => c.Id == id.Value);
+                .Include(c => c.ArtistaCodigoNav)// Incluir el artista relacionado
+                .FirstOrDefaultAsync(c => c.Id == id.Value);// Buscar la canción por ID
 
-            if (cancion == null) return NotFound();
+            if (cancion == null) return NotFound();// Verificar si la canción existe
 
             // Obtener información del usuario actual
-            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));// Obtener el ID del usuario logueado
             var usuario = await _context.Usuarios
-                .Include(u => u.Plan)
-                .FirstOrDefaultAsync(u => u.Id == usuarioId);
+                .Include(u => u.Plan)// Incluir el plan del usuario
+                .FirstOrDefaultAsync(u => u.Id == usuarioId);// Buscar el usuario por ID
 
             if (usuario == null) return RedirectToAction("Index", "Login");
 
@@ -48,8 +48,8 @@ namespace Spotify.MVC.Controllers
             // Si es plan gratuito, verificar el límite de reproducciones
             if (esPlanGratuito)
             {
-                var sessionKey = $"reproducciones_cancion_{id.Value}";
-                var reproducciones = HttpContext.Session.GetInt32(sessionKey) ?? 0;
+                var sessionKey = $"reproducciones_cancion_{id.Value}";// Clave de sesión única para la canción
+                var reproducciones = HttpContext.Session.GetInt32(sessionKey) ?? 0;// Obtener el número de reproducciones desde la sesión, o 0 si no existe
 
                 if (reproducciones >= 3) // Límite de 3 reproducciones gratuitas
                 {
@@ -58,11 +58,11 @@ namespace Spotify.MVC.Controllers
                 }
 
                 // Incrementar contador de reproducciones
-                HttpContext.Session.SetInt32(sessionKey, reproducciones + 1);
-                ViewBag.ReproduccionesRestantes = 3 - (reproducciones + 1);
+                HttpContext.Session.SetInt32(sessionKey, reproducciones + 1);// Incrementar el contador de reproducciones en la sesión
+                ViewBag.ReproduccionesRestantes = 3 - (reproducciones + 1);// Calcular las reproducciones restantes
             }
 
-            ViewBag.EsPlanGratuito = esPlanGratuito;
+            ViewBag.EsPlanGratuito = esPlanGratuito;// Indicar si el usuario tiene un plan gratuito
             ViewBag.PuedeDescargar = !esPlanGratuito; // Solo usuarios premium pueden descargar
             ViewBag.Usuario = usuario;
 
@@ -74,10 +74,11 @@ namespace Spotify.MVC.Controllers
         [HttpPost]
         public IActionResult PausarReproduccion(int cancionId, int tiempoTranscurrido)
         {
-            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            var usuario = _context.Usuarios.Include(u => u.Plan).FirstOrDefault(u => u.Id == usuarioId);
+            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));// Obtener el ID del usuario logueado
+            var usuario = _context.Usuarios.Include(u => u.Plan).FirstOrDefault(u => u.Id == usuarioId);// Buscar el usuario por ID
 
-            if (usuario == null) return Json(new { success = false });
+            if (usuario == null) 
+                return Json(new { success = false });// Si el usuario no existe, devolver un error
 
             bool esPlanGratuito = usuario.Plan?.PrecioMensual == 0 || usuario.Plan?.PrecioMensual == null;
 
@@ -100,29 +101,29 @@ namespace Spotify.MVC.Controllers
         [HttpGet]
         public IActionResult VerificarLimiteReproducciones(int cancionId)
         {
-            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            var usuario = _context.Usuarios.Include(u => u.Plan).FirstOrDefault(u => u.Id == usuarioId);
+            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));// Obtener el ID del usuario logueado
+            var usuario = _context.Usuarios.Include(u => u.Plan).FirstOrDefault(u => u.Id == usuarioId);// Buscar el usuario por ID
 
-            if (usuario == null) return Json(new { success = false });
+            if (usuario == null) return Json(new { success = false });//Si el usuario no existe, devolver un error
 
-            bool esPlanGratuito = usuario.Plan?.PrecioMensual == 0 || usuario.Plan?.PrecioMensual == null;
+            bool esPlanGratuito = usuario.Plan?.PrecioMensual == 0 || usuario.Plan?.PrecioMensual == null;// Verificar si el usuario tiene un plan gratuito
 
             if (!esPlanGratuito)
             {
                 return Json(new { success = true, limitado = false });
             }
 
-            var sessionKey = $"reproducciones_cancion_{cancionId}";
-            var reproducciones = HttpContext.Session.GetInt32(sessionKey) ?? 0;
-            var restantes = Math.Max(0, 3 - reproducciones);
+            var sessionKey = $"reproducciones_cancion_{cancionId}";// Clave de sesión única para la canción
+            var reproducciones = HttpContext.Session.GetInt32(sessionKey) ?? 0;// Obtener el número de reproducciones desde la sesión, o 0 si no existe
+            var restantes = Math.Max(0, 3 - reproducciones);// Calcular las reproducciones restantes (máximo 3)
 
-            return Json(new
+            return Json(new // Respuesta JSON con el estado de las reproducciones
             {
-                success = true,
-                limitado = true,
-                reproducciones = reproducciones,
-                restantes = restantes,
-                bloqueado = reproducciones >= 3
+                success = true,// Indicar que la solicitud fue exitosa
+                limitado = true,// Indicar que el usuario tiene un plan gratuito
+                reproducciones = reproducciones,// Número de reproducciones realizadas
+                restantes = restantes,// Reproducciones restantes
+                bloqueado = reproducciones >= 3// Indicar si el usuario ha alcanzado el límite de reproducciones
             });
         }
 
@@ -131,7 +132,7 @@ namespace Spotify.MVC.Controllers
         public IActionResult Subir()
         {
             // Obtener el ID del artista logueado
-            var artistaId = User.FindFirst("ArtistaId")?.Value;
+            var artistaId = User.FindFirst("ArtistaId")?.Value;// Obtener el ID del artista desde los claims del usuario logueado
             var todosLosAlbums = CRUD<Album>.GetAll();
             var albumsDelArtista = todosLosAlbums
                 .Where(a => a.ArtistaId.ToString() == artistaId)
@@ -145,10 +146,10 @@ namespace Spotify.MVC.Controllers
         public IActionResult Subir(CancionSubirViewModel cancionviewmodel)
         {
             // Obtener el ID del artista desde el usuario logueado
-            var artistaId = User.FindFirst("ArtistaId")?.Value;
-            cancionviewmodel.ArtistaId = int.Parse(artistaId);
+            var artistaId = User.FindFirst("ArtistaId")?.Value;// Obtener el ID del artista desde los claims del usuario logueado
+            cancionviewmodel.ArtistaId = int.Parse(artistaId);// Asignar el ID del artista al modelo de vista
 
-            if (!ModelState.IsValid) return View(cancionviewmodel);
+            if (!ModelState.IsValid) return View(cancionviewmodel);// Verificar si el modelo de vista es válido
 
             // abre el stream y llama al CRUD
             var cancion = CRUD<Cancion>.UploadWithFile(

@@ -27,12 +27,12 @@ namespace Spotify.MVC.Controllers
 
         public IActionResult DashboardAdmin()
         {
-            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));// Obtiene el ID del usuario logueado
 
-            var usuario = _context.Usuarios.Include(u => u.Plan)
-                                           .FirstOrDefault(u => u.Id == usuarioId);
+            var usuario = _context.Usuarios.Include(u => u.Plan)// Incluye el plan del usuario
+                                           .FirstOrDefault(u => u.Id == usuarioId);// Busca el usuario por ID
 
-            if (usuario == null || usuario.TipoUsuario != "admin")
+            if (usuario == null || usuario.TipoUsuario != "admin")// Verifica si el usuario es admin
             {
                 return RedirectToAction("Index", "Login");  // Si no está logueado o no es admin, redirige al login
             }
@@ -51,30 +51,13 @@ namespace Spotify.MVC.Controllers
             return View(model);  // Pasa el modelo a la vista de DashboardAdmin
         }
 
-
-        //public IActionResult DashboardAdmin()
-        //{
-        //    // Si quieres, carga datos para estadísticas:
-        //    var totalUsers = _context.Usuarios.Count();
-        //    ViewBag.TotalUsers = totalUsers;
-
-        //    var usuarioId = HttpContext.Session.GetInt32("UserId");
-
-        //    var usuario = _context.Usuarios.Include(u => u.Plan).FirstOrDefault(u => u.Id == usuarioId);
-        //    if (usuario == null)
-        //    {
-        //        return RedirectToAction("Index", "Login");  // Redirige al login si no esta logueado
-        //    }
-
-        //    return View("DashboardAdmin", usuario);  // Especifica la vista correctamente
-        //}
         public IActionResult Dashboard()
         {
-            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));// Obtiene el ID del usuario logueado
 
-            var usuario = _context.Usuarios.Include(u => u.Plan)
-                                           .Include(u => u.Canciones)
-                                           .FirstOrDefault(u => u.Id == usuarioId);
+            var usuario = _context.Usuarios.Include(u => u.Plan)// Incluye el plan del usuario
+                                           .Include(u => u.Canciones)// Incluye las canciones del usuario
+                                           .FirstOrDefault(u => u.Id == usuarioId);// Busca el usuario por ID
 
             if (usuario == null)
             {
@@ -100,7 +83,7 @@ namespace Spotify.MVC.Controllers
         {
             var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-            var usuario = _context.Usuarios.Include(u => u.Plan)
+            var usuario = _context.Usuarios.Include(u => u.Plan)// Incluye el plan del usuario
                                            .Include(u => u.Canciones)  // Asegúrate de incluir las canciones del artista
                                            .FirstOrDefault(u => u.Id == usuarioId);
 
@@ -120,35 +103,15 @@ namespace Spotify.MVC.Controllers
             return View(model);  // Pasa el modelo a la vista de DashboardArtista
         }
 
-        //public IActionResult DashboardArtista()
-        //{
-        //    var usuarioId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-
-        //    var usuario = _context.Usuarios.Include(u => u.Plan).FirstOrDefault(u => u.Id == usuarioId);
-        //    if (usuario == null)
-        //    {
-        //        return RedirectToAction("Index", "Login");  // Redirige al login si no est? logueado
-        //    }
-
-        //    return View("DashboardArtista", usuario);   // Esto busca autom?ticamente la vista DashboardArtista.cshtml en la carpeta Views/Home
-        //}
-
-        // Acción para cerrar sesión
-        //public IActionResult Logout()
-        //{
-        //    HttpContext.Session.Clear();  // Limpiar la sesión
-        //    return RedirectToAction("Index", "Home");  // Redirigir al login
-        //}
-
         public IActionResult Logout()
         {
             // Eliminar las cookies de autenticación y limpiar la sesión
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.Session.Clear();
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);// Cierra la sesión del usuario
+            HttpContext.Session.Clear();// Limpia la sesión actual
             return RedirectToAction("Index", "Home");
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]//Desactiva el caché de la respuesta
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
